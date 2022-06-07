@@ -1,4 +1,4 @@
-const { Pokemon, Type } = require('../db');
+const { Pokemon, Type, PokemonTypes } = require('../db');
 const axios = require('axios');
 const { Op } = require('sequelize');
 
@@ -35,10 +35,11 @@ const getPokemons = async (req, res) => {
                 const atk = stats.filter(s => s.stat.name === 'attack');
                 const def = stats.filter(s => s.stat.name === 'defense');
                 const spd = stats.filter(s => s.stat.name === 'speed');
+                const tipos = types.map(t =>  t.type.name);
                 const pokemon = {
                     id: id,
                     name: name,
-                    types: types,
+                    types: tipos,
                     img: sprites.other.dream_world.front_default,
                     hp: hp[0].base_stat,
                     atk: atk[0].base_stat,
@@ -56,12 +57,24 @@ const getPokemons = async (req, res) => {
             for(i = 0; i < results.length; i++) {
                 const pokeData = await axios.get(results[i].url);
                 const {name, id, types, sprites} = await pokeData.data;
+                const tipos = types.map(t =>  t.type.name)
                 arrayPokemons.push({
                     id: id,
                     name: name,
-                    type: types,
+                    type: tipos,
                     img: sprites.other.dream_world.front_default
                 })
+            }
+            const pokemonsdb = await Pokemon.findAll();
+            for(i = 0; i < pokemonsdb.length; i++) {
+
+                arrayPokemons.push({
+                    id: pokemonsdb[i].dataValues.id,
+                    name: pokemonsdb[i].dataValues.name,
+                    // type: pokemonsdb[i].dataValues.type,
+                    img: pokemonsdb[i].dataValues.img
+                });
+                console.log(pokemonsdb[i].dataValues)
             }
             res.send(arrayPokemons)
         }
@@ -83,10 +96,11 @@ const getPokeDetail = async (req, res) => {
             const atk = stats.filter(s => s.stat.name === 'attack');
             const def = stats.filter(s => s.stat.name === 'defense');
             const spd = stats.filter(s => s.stat.name === 'speed');
+            const tipos = types.map(t =>  t.type.name);
             const pokemon = {
                 id: id,
                 name: name,
-                types: types,
+                types: tipos,
                 img: sprites.other.dream_world.front_default,
                 hp: hp[0].base_stat,
                 atk: atk[0].base_stat,
@@ -143,3 +157,4 @@ module.exports = {
 
 
 // preguntar para agregar atk y def especial, y preguntar por ordenamiento a-z z-a si solo estan los primeros 40 pokemons
+// juntar las tablas de Pokemon y Type o en su defecto consultar para agregar de base los types junto con el atk y def especial
