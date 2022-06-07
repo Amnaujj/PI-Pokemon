@@ -1,0 +1,6 @@
+.LandingPage {
+    height: 100vh;
+    background-image: url("../../img/pokeimagen.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
