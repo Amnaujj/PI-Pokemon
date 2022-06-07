@@ -10,7 +10,7 @@ const getPokemons = async (req, res) => {
             const pokeDatadb = await Pokemon.findAll({
                 where:{
                     name: {
-                        [Op.like]:nombre
+                        [Op.substring]:nombre.toLowerCase()
                     }
                 }
             })
@@ -29,7 +29,7 @@ const getPokemons = async (req, res) => {
                 };
                 res.send(pokemondb);
             } else {
-                const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${nombre}`)
+                const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${nombre.toLowerCase()}`)
                 const { id, name, types, sprites, stats, height, weight } = await pokeData.data;
                 const hp = stats.filter(s => s.stat.name === 'hp');
                 const atk = stats.filter(s => s.stat.name === 'attack');
@@ -51,7 +51,7 @@ const getPokemons = async (req, res) => {
                 res.send(pokemon)
             }
         } else {
-            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40') // ?offset=0&limit=40
+            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=4') // ?offset=0&limit=40
             const {results} = pokemons.data;
             let arrayPokemons = []
             for(i = 0; i < results.length; i++) {
@@ -67,11 +67,10 @@ const getPokemons = async (req, res) => {
             }
             const pokemonsdb = await Pokemon.findAll();
             for(i = 0; i < pokemonsdb.length; i++) {
-
                 arrayPokemons.push({
                     id: pokemonsdb[i].dataValues.id,
                     name: pokemonsdb[i].dataValues.name,
-                    // type: pokemonsdb[i].dataValues.type,
+                    type: pokemonsdb[i].dataValues.type,
                     img: pokemonsdb[i].dataValues.img
                 });
                 console.log(pokemonsdb[i].dataValues)
@@ -117,9 +116,9 @@ const getPokeDetail = async (req, res) => {
 }
 
 const postPokemons = async (req, res) => {
-    const { name, hp, atk, def, spd, height, weight, img } = req.body;
+    const { name, hp, atk, def, spd, height, weight, img, type } = req.body;
     try {
-        let infoPokemon = { name, hp, atk, def, spd, height, weight, img };
+        let infoPokemon = { name, hp, atk, def, spd, height, weight, img, type };
         let newPokemon = await Pokemon.create(infoPokemon);
         res.send(newPokemon)
     } catch (error) {
@@ -158,3 +157,4 @@ module.exports = {
 
 // preguntar para agregar atk y def especial, y preguntar por ordenamiento a-z z-a si solo estan los primeros 40 pokemons
 // juntar las tablas de Pokemon y Type o en su defecto consultar para agregar de base los types junto con el atk y def especial
+// agregar un update y un delete?
