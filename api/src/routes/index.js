@@ -7,7 +7,6 @@ const router = Router();
 const {
     getPokemons,
     getPokeDetail,
-    getPokemon,
     postPokemons,
     getPokeTypes
 } = require('./controllers')
@@ -15,9 +14,8 @@ const {
 
 router.get('/pokemons', getPokemons);
 router.get('/pokemons/:idPokemon', getPokeDetail);
-router.get('', getPokemon);
-router.post('', postPokemons);
-router.get('', getPokeTypes)
+router.post('/pokemons', postPokemons);
+router.get('/types', getPokeTypes)
 
 
 module.exports = router;
