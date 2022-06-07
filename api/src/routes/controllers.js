@@ -3,24 +3,33 @@ const axios = require('axios');
 const { Op } = require('sequelize');
 
 
-
 const getPokemons = async (req, res) => {
     try {
         const {nombre} = req.query;
         if(nombre){
-            let arrayPokemons = [];
             const pokeDatadb = await Pokemon.findAll({
                 where:{
                     name: {
-                        [Op.substring]:nombre
+                        [Op.like]:nombre
                     }
                 }
             })
-            if(typeof pokeDatadb === 'object') {
-                arrayPokemons.push(pokeDatadb)
-            }
-            const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${nombre}`)
-            if(pokeData){
+            console.log(pokeDatadb)
+            if(typeof pokeDatadb[0] == 'object'){
+                const pokemondb = {
+                    id: pokeDatadb[0].dataValues.id,
+                    name: pokeDatadb[0].dataValues.name,
+                    hp: pokeDatadb[0].dataValues.hp,
+                    atk: pokeDatadb[0].dataValues.atk,
+                    def: pokeDatadb[0].dataValues.def,
+                    spd: pokeDatadb[0].dataValues.spd,
+                    height: pokeDatadb[0].dataValues.height,
+                    weight: pokeDatadb[0].dataValues.weight,
+                    img: pokeDatadb[0].dataValues.img
+                };
+                res.send(pokemondb);
+            } else {
+                const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${nombre}`)
                 const { id, name, types, sprites, stats, height, weight } = await pokeData.data;
                 const hp = stats.filter(s => s.stat.name === 'hp');
                 const atk = stats.filter(s => s.stat.name === 'attack');
@@ -38,9 +47,8 @@ const getPokemons = async (req, res) => {
                     height: height,
                     weight: weight
                 }
-                arrayPokemons.push(pokemon)
+                res.send(pokemon)
             }
-            res.send(arrayPokemons)
         } else {
             const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40') // ?offset=0&limit=40
             const {results} = pokemons.data;
@@ -58,7 +66,7 @@ const getPokemons = async (req, res) => {
             res.send(arrayPokemons)
         }
     } catch (error) {
-        res.send(error)
+        res.send('No se encontro el pokemon')
     }
 }
 
@@ -66,9 +74,8 @@ const getPokeDetail = async (req, res) => {
     const {idPokemon} = req.params;
     try {
         if(isNaN(idPokemon)){
-            // const pokeData = await Pokemon.findByPk(idPokemon)
-            // console.log(pokeData)
-            // const { id, name, types, sprites, stats, height, weight } = await pokeData;
+            const pokeData = await Pokemon.findByPk(idPokemon);
+            res.send(pokeData);
         } else {
             const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`);
             const { id, name, types, sprites, stats, height, weight } = await pokeData.data;
@@ -91,22 +98,18 @@ const getPokeDetail = async (req, res) => {
             res.send(pokemon)
         }
     } catch (error) {
-        res.send(':o')
+        res.send(error)
     }
 }
-// [ ] Los campos mostrados en la ruta principal para cada pokemon (imagen, nombre y tipos)
-// [ ] Número de Pokemon (id)
-// [ ] Estadísticas (vida, ataque, defensa, velocidad)
-// [ ] Altura y peso
-// Obtener el detalle de un pokemon en particular
-// Debe traer solo los datos pedidos en la ruta de detalle de pokemon
-// Tener en cuenta que tiene que funcionar tanto para un id de un pokemon existente en pokeapi o uno creado por ustedes
 
 const postPokemons = async (req, res) => {
+    const { name, hp, atk, def, spd, height, weight, img } = req.body;
     try {
-        
+        let infoPokemon = { name, hp, atk, def, spd, height, weight, img };
+        let newPokemon = await Pokemon.create(infoPokemon);
+        res.send(newPokemon)
     } catch (error) {
-        
+        res.send(error)
     }
 }
 
@@ -123,8 +126,6 @@ const getPokeTypes = async (req, res) => {
         res.send(error)
     }
 }
-// Obtener todos los tipos de pokemons posibles
-// En una primera instancia deberán traerlos desde pokeapi y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
 
 
 module.exports = {
