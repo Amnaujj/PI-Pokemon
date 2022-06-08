@@ -133,12 +133,21 @@ const getPokeDetail = async (req, res) => {
 const postPokemons = async (req, res) => {
     const { name, hp, atk, def, spd, height, weight, img, type } = req.body;
     try {
-        let infoPokemon = { name, hp, atk, def, spd, height, weight, img };
-        let newPokemon = await Pokemon.create(infoPokemon);
-        for (let i = 0; i < type.length; i++) {
-            await newPokemon.addTypes(type[i]);
+        let findPokemon = await Pokemon.findOne({
+            where: {
+                name: name.toLowerCase()
+            }
+        })
+        if(findPokemon){
+            return res.send({error: "Ya existe un pokemon con ese nombre"})
+        } else {
+            let infoPokemon = { name, hp, atk, def, spd, height, weight, img };
+            let newPokemon = await Pokemon.create(infoPokemon);
+            for (let i = 0; i < type.length; i++) {
+                await newPokemon.addTypes(type[i]);
+            }
+            res.send(await newPokemon)
         }
-        res.send(await newPokemon)
     } catch (error) {
         res.send(error)
     }
