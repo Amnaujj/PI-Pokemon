@@ -53,7 +53,7 @@ const getPokemons = async (req, res) => {
                 res.send(pokemon)
             }
         } else {
-            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40') // ?offset=0&limit=40
+            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=4') // ?offset=0&limit=40
             const {results} = pokemons.data;
             let arrayPokemons = []
             for(i = 0; i < results.length; i++) {
@@ -146,13 +146,18 @@ const postPokemons = async (req, res) => {
 
 const getPokeTypes = async (req, res) => {
     try {
-        const types = await axios.get('https://pokeapi.co/api/v2/type');
-        for(i = 0; i < types.data.results.length; i++){
-            let name = types.data.results[i].name;
-            await Type.create({name});
+        const tipos = await Type.findAll();
+        if(typeof tipos[0] == 'object'){
+            res.send(tipos)
+        } else {
+            const types = await axios.get('https://pokeapi.co/api/v2/type');
+            for(i = 0; i < types.data.results.length; i++){
+                let name = types.data.results[i].name;
+                await Type.create({name});
+            }
+            let pokeTypes = await Type.findAll();
+            res.send(pokeTypes)
         }
-        let pokeTypes = await Type.findAll();
-        res.send(pokeTypes)
     } catch (error) {
         res.send(error)
     }
