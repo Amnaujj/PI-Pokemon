@@ -114,7 +114,7 @@ const getPokeDetail = async (req, res) => {
             const pokemon = {
                 id: id,
                 name: name,
-                Types: tipos,
+                types: tipos,
                 img: sprites.other.dream_world.front_default,
                 hp: hp[0].base_stat,
                 atk: atk[0].base_stat,
