@@ -1,4 +1,4 @@
-const { Pokemon, Type, PokemonTypes } = require('../db');
+const { Pokemon, Type } = require('../db');
 const axios = require('axios');
 const { Op } = require('sequelize');
 
@@ -12,10 +12,11 @@ const getPokemons = async (req, res) => {
                     name: {
                         [Op.substring]:nombre.toLowerCase()
                     }
-                }
+                },
+                include: Type,
             })
-            console.log(pokeDatadb)
             if(typeof pokeDatadb[0] == 'object'){
+                let tipoArray = pokeDatadb[0].dataValues.Types.map(t => t.name);
                 const pokemondb = {
                     id: pokeDatadb[0].dataValues.id,
                     name: pokeDatadb[0].dataValues.name,
@@ -25,7 +26,8 @@ const getPokemons = async (req, res) => {
                     spd: pokeDatadb[0].dataValues.spd,
                     height: pokeDatadb[0].dataValues.height,
                     weight: pokeDatadb[0].dataValues.weight,
-                    img: pokeDatadb[0].dataValues.img
+                    img: pokeDatadb[0].dataValues.img,
+                    types: tipoArray
                 };
                 res.send(pokemondb);
             } else {
@@ -51,7 +53,7 @@ const getPokemons = async (req, res) => {
                 res.send(pokemon)
             }
         } else {
-            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=4') // ?offset=0&limit=40
+            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40') // ?offset=0&limit=40
             const {results} = pokemons.data;
             let arrayPokemons = []
             for(i = 0; i < results.length; i++) {
@@ -61,19 +63,19 @@ const getPokemons = async (req, res) => {
                 arrayPokemons.push({
                     id: id,
                     name: name,
-                    type: tipos,
+                    types: tipos,
                     img: sprites.other.dream_world.front_default
                 })
             }
-            const pokemonsdb = await Pokemon.findAll();
+            const pokemonsdb = await Pokemon.findAll({include: Type});
             for(i = 0; i < pokemonsdb.length; i++) {
+                let tipoArray = pokemonsdb[i].dataValues.Types.map(t => t.name);
                 arrayPokemons.push({
                     id: pokemonsdb[i].dataValues.id,
                     name: pokemonsdb[i].dataValues.name,
-                    type: pokemonsdb[i].dataValues.type,
+                    types: tipoArray,
                     img: pokemonsdb[i].dataValues.img
                 });
-                console.log(pokemonsdb[i].dataValues)
             }
             res.send(arrayPokemons)
         }
@@ -86,8 +88,21 @@ const getPokeDetail = async (req, res) => {
     const {idPokemon} = req.params;
     try {
         if(isNaN(idPokemon)){
-            const pokeData = await Pokemon.findByPk(idPokemon);
-            res.send(pokeData);
+            const pokeDatadb = await Pokemon.findByPk(idPokemon, {include: Type});
+            let tipoArray = pokeDatadb.dataValues.Types.map(t => t.name);
+            const pokemon = {
+                id: pokeDatadb.dataValues.id,
+                name: pokeDatadb.dataValues.name,
+                hp: pokeDatadb.dataValues.hp,
+                atk: pokeDatadb.dataValues.atk,
+                def: pokeDatadb.dataValues.def,
+                spd: pokeDatadb.dataValues.spd,
+                height: pokeDatadb.dataValues.height,
+                weight: pokeDatadb.dataValues.weight,
+                img: pokeDatadb.dataValues.img,
+                types: tipoArray
+            }
+            res.send(pokemon);
         } else {
             const pokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`);
             const { id, name, types, sprites, stats, height, weight } = await pokeData.data;
@@ -99,7 +114,7 @@ const getPokeDetail = async (req, res) => {
             const pokemon = {
                 id: id,
                 name: name,
-                types: tipos,
+                Types: tipos,
                 img: sprites.other.dream_world.front_default,
                 hp: hp[0].base_stat,
                 atk: atk[0].base_stat,
@@ -118,9 +133,12 @@ const getPokeDetail = async (req, res) => {
 const postPokemons = async (req, res) => {
     const { name, hp, atk, def, spd, height, weight, img, type } = req.body;
     try {
-        let infoPokemon = { name, hp, atk, def, spd, height, weight, img, type };
+        let infoPokemon = { name, hp, atk, def, spd, height, weight, img };
         let newPokemon = await Pokemon.create(infoPokemon);
-        res.send(newPokemon)
+        for (let i = 0; i < type.length; i++) {
+            await newPokemon.addTypes(type[i]);
+        }
+        res.send(await newPokemon)
     } catch (error) {
         res.send(error)
     }
@@ -156,5 +174,4 @@ module.exports = {
 
 
 // preguntar para agregar atk y def especial, y preguntar por ordenamiento a-z z-a si solo estan los primeros 40 pokemons
-// juntar las tablas de Pokemon y Type o en su defecto consultar para agregar de base los types junto con el atk y def especial
 // agregar un update y un delete?
