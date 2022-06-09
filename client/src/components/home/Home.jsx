@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Home.css';
 
 import { getPokemons, getTypes } from "../../redux/actions";
-// import NavBar from "../navBar/NavBar";
+import NavBar from "../navBar/NavBar";
 import PokemonCard from "../pokemonCard/PokemonCard";
 
 export default function Home () {
@@ -16,12 +16,13 @@ export default function Home () {
     },[dispatch])
 
     const pokemons = useSelector((state) => state.pokemons);
-    console.log(pokemons);
+    // const pokemon = useSelector((state) => state.pokemon);
+    // console.log(pokemons);
 
 
     return(
         <div className="Home">
-            {/* <NavBar/> */}
+            <NavBar/>
             <div>
                 {pokemons && pokemons?.map((pokemon) => 
                     <PokemonCard

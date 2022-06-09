@@ -5,6 +5,7 @@ export const GET_POKEMONS = 'GET_POKEMONS';
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
 export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
 export const POST_POKEMON = 'POST_POKEMON';
+export const RESET = 'RESET';
 
 
 
@@ -15,7 +16,7 @@ export function getTypes () {
         .then(r => r.json())
         .then((types) => {
             dispatch({
-                type: GET_TYPES,
+                type: 'GET_TYPES',
                 payload: types
             })
         })
@@ -28,7 +29,7 @@ export function getPokemons () {
         .then(r => r.json())
         .then(pokemons => {
             dispatch({
-                type: GET_POKEMONS,
+                type: 'GET_POKEMONS',
                 payload: pokemons
             })
         })
@@ -41,7 +42,7 @@ export function getPokemonByName (name) {
         .then(r => r.json())
         .then(pokemon => {
             dispatch({
-                type: GET_POKEMON_BY_NAME,
+                type: 'GET_POKEMON_BY_NAME',
                 payload: pokemon
             })
         })
@@ -54,7 +55,7 @@ export function getPokemonDetail (id) {
         .then(r => r.json())
         .then(pokemonDetail => {
             dispatch({
-                type: GET_POKEMON_DETAIL,
+                type: 'GET_POKEMON_DETAIL',
                 payload: pokemonDetail
             })
         })
@@ -76,11 +77,17 @@ export function postPokemon (name, hp, atk, def, spd, height, weight, img, type)
                 type:type
             });
             dispatch({
-                type: POST_POKEMON,
+                type: 'POST_POKEMON',
                 payload: response
             })
         } catch (error) {
             console.log(error)
         }
+    }
+}
+
+export function reset () {
+    return {
+        type: 'RESET'
     }
 }
