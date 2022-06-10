@@ -1,6 +1,9 @@
 .bt{
+    color: #ffffff;
+    background-color: rgb(49, 48, 48);
     margin-left: 20px;
     height: 35px;
+    border-color: #ffffff;
     border-radius: 10px;
 }
 .inp{

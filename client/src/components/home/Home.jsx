@@ -44,11 +44,10 @@ export default function Home () {
         arrayPaginado.push(i+1)
     }
     const thisPage = (i) => {
-        console.log(i)
         setCurrentPage(i)
     }
 
-    if(!poke){
+    if(!poke || poke.length < 1){
         return(
             <div className="Home">
                 <NavBar/>
@@ -65,7 +64,7 @@ export default function Home () {
                 <div>
                     <button onClick={lastPage}>back</button>
                     {arrayPaginado.map((i) => 
-                        <button onClick={e => thisPage(i)}>{i}</button>
+                        <button key={i} onClick={e => thisPage(i)}>{i}</button>
                     )}
                     <button onClick={nextPage}>next</button>
                 </div>

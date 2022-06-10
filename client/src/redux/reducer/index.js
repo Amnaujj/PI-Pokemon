@@ -17,8 +17,7 @@ export default function rootReducer (state = initialState, action) {
         case GET_POKEMONS:
             if(state.pokemons?.length > 1) {
                 return {
-                    ...state,
-                    pokemon: []
+                    ...state
                 }
             } else {
                 return {
@@ -55,7 +54,7 @@ export default function rootReducer (state = initialState, action) {
             }
         default:
             return {
-                state,
+                ...state,
             };
     }
 }

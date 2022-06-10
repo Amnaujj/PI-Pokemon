@@ -53,7 +53,7 @@ const getPokemons = async (req, res) => {
                 res.send(pokemon)
             }
         } else {
-            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=12') // ?offset=0&limit=40
+            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40') // ?offset=0&limit=40
             const {results} = pokemons.data;
             let arrayPokemons = []
             for(i = 0; i < results.length; i++) {
