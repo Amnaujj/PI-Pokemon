@@ -4,6 +4,7 @@ import imagen from '../../img/Pokemon-logo.svg'
 import SearchBar from './searchBar/SearchBar.jsx';
 import { useDispatch } from "react-redux";
 import { reset } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 export default function NavBar () {
 
@@ -16,7 +17,10 @@ export default function NavBar () {
     return(
         <nav className="Nav">
             <img src={imagen} alt="img" className="img" />
-            <button onClick={(e) => handleReset(e)}>RESET</button>
+            <Link to='/createPokemon'>
+                <button className="btnCreate">Create Pokemon</button>
+            </Link>
+            <button onClick={(e) => handleReset(e)} className="btnReset">RESET</button>
             <div className='sb'>
                 <SearchBar/>
             </div>
