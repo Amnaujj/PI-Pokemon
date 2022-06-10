@@ -1,7 +1,9 @@
 .bt{
     margin-left: 20px;
     height: 35px;
+    border-radius: 10px;
 }
 .inp{
     height: 30px;
+    border-radius: 10px;
 }

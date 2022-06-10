@@ -6,6 +6,7 @@ export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
 export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
 export const POST_POKEMON = 'POST_POKEMON';
 export const RESET = 'RESET';
+export const RESET_DETAIL = 'RESET_DETAIL';
 
 
 
@@ -78,7 +79,7 @@ export function postPokemon (name, hp, atk, def, spd, height, weight, img, type)
             });
             dispatch({
                 type: 'POST_POKEMON',
-                payload: response
+                payload: response.data
             })
         } catch (error) {
             console.log(error)
@@ -89,5 +90,11 @@ export function postPokemon (name, hp, atk, def, spd, height, weight, img, type)
 export function reset () {
     return {
         type: 'RESET'
+    }
+}
+
+export function resetDetail () {
+    return {
+        type: 'RESET_DETAIL'
     }
 }

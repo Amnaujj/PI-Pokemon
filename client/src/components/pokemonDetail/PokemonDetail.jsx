@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { getPokemonDetail } from '../../redux/actions';
+import { getPokemonDetail, resetDetail } from '../../redux/actions';
 
 
 
@@ -11,29 +11,43 @@ export default function PokemonDetail () {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const pokemonDetail = useSelector((state) => state.pokemonDetail);
+    
     useEffect(() => {
         dispatch(getPokemonDetail(id))
-    })
-    const pokemonDetail = useSelector((state) => state.pokemonDetail)
+        dispatch(resetDetail())
+    }, [dispatch, id])
 
-    return(
-        <div>
-            <Link to='/home'>
-                <button>Home</button>
-            </Link>
+    if(!pokemonDetail || !pokemonDetail.name){
+        console.log('HOLA')
+        console.log(pokemonDetail)
+        return(
             <div>
-                <h1>{pokemonDetail?.name}</h1>
-                <div>
-                    <h2>hp: {pokemonDetail?.hp}</h2>
-                    <h2>atk: {pokemonDetail?.atk}</h2>
-                    <h2>def: {pokemonDetail?.def}</h2>
-                    <h2>spd: {pokemonDetail?.spd}</h2>
-                    <h2>height: {pokemonDetail?.height}</h2>
-                    <h2>weight: {pokemonDetail?.weight}</h2>
-                    <h2>pokedex: {pokemonDetail?.id}</h2>
-                </div>
+                <h1>Cargando ...</h1>
             </div>
-            <img src={pokemonDetail?.img} alt="img" />
-        </div>
-    )
+        )
+    } else if (pokemonDetail) {
+        console.log('HOLA2')
+        console.log(pokemonDetail)
+        return(
+            <div>
+                <Link to='/home/'>
+                    <button>Home</button>
+                </Link>
+                <div>
+                    <h1>{pokemonDetail?.name}</h1>
+                    <div>
+                        <h2>hp: {pokemonDetail?.hp}</h2>
+                        <h2>atk: {pokemonDetail?.atk}</h2>
+                        <h2>def: {pokemonDetail?.def}</h2>
+                        <h2>spd: {pokemonDetail?.spd}</h2>
+                        <h2>height: {pokemonDetail?.height}</h2>
+                        <h2>weight: {pokemonDetail?.weight}</h2>
+                        <h2>pokedex: {pokemonDetail?.id}</h2>
+                    </div>
+                </div>
+                <img src={pokemonDetail?.img} alt="img" />
+            </div>
+        )
+    }
 }
