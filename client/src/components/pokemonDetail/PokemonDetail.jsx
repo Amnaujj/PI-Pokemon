@@ -19,16 +19,12 @@ export default function PokemonDetail () {
     }, [dispatch, id])
 
     if(!pokemonDetail || !pokemonDetail.name){
-        console.log('HOLA')
-        console.log(pokemonDetail)
         return(
             <div>
                 <h1>Cargando ...</h1>
             </div>
         )
     } else if (pokemonDetail) {
-        console.log('HOLA2')
-        console.log(pokemonDetail)
         return(
             <div>
                 <Link to='/home/'>

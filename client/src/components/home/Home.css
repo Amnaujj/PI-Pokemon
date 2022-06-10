@@ -1,5 +1,7 @@
 .Home{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     height: fit-content;
     width: 100vw;
@@ -14,4 +16,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     width: 100vw;
+}
+.img{
+    height: 500px;
 }

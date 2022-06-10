@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './Home.css';
+import Gengar from '../../img/Gengar.gif'
 
 import { getPokemons, getTypes } from "../../redux/actions";
 import NavBar from "../navBar/NavBar";
@@ -18,27 +19,34 @@ export default function Home () {
     const allPokemons = useSelector((state) => state.pokemons);
     const pokemon = useSelector((state) => state.pokemon);
 
-    const[currentPage, setCurrentPage] = useState(0);
+    const[currentPage, setCurrentPage] = useState(1);
 
     let poke;
     if(pokemon && typeof pokemon[0] == 'object'){
         poke = pokemon
     } else {
         poke = allPokemons;
-        poke = allPokemons?.slice(currentPage, currentPage + 12);
+        poke = allPokemons?.slice((currentPage * 12) - 12, currentPage * 12);
     }
     const pages = Math.ceil(allPokemons?.length / 12);
     const nextPage = () => {
-        if(currentPage < pages + 1) {
-            setCurrentPage(currentPage + 12)
+        if(currentPage < pages ) {
+            setCurrentPage(currentPage + 1)
         }
     }
     const lastPage = () => {
-        if (currentPage > 0) {
-            setCurrentPage(currentPage - 12)
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1)
         }
     }
-
+    let arrayPaginado = []
+    for (let i = 0; i < pages; i++) {
+        arrayPaginado.push(i+1)
+    }
+    const thisPage = (i) => {
+        console.log(i)
+        setCurrentPage(i)
+    }
 
     if(!poke){
         return(
@@ -47,6 +55,7 @@ export default function Home () {
                 <div>
                     <h1>Cargando ...</h1>
                 </div>
+                <img src={Gengar} alt="img" className="img"/>
             </div>
         )
     } else {
@@ -55,6 +64,9 @@ export default function Home () {
                 <NavBar/>
                 <div>
                     <button onClick={lastPage}>back</button>
+                    {arrayPaginado.map((i) => 
+                        <button onClick={e => thisPage(i)}>{i}</button>
+                    )}
                     <button onClick={nextPage}>next</button>
                 </div>
                 <div className="poke">

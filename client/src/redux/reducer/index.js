@@ -5,7 +5,6 @@ const initialState = {
     types: [],
     pokemon: [],
     pokemonDetail: {},
-    page: 1
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -36,7 +35,8 @@ export default function rootReducer (state = initialState, action) {
         case GET_POKEMON_DETAIL:
             return {
                 ...state,
-                pokemonDetail: action.payload
+                pokemonDetail: action.payload,
+                pokemon:[]
             }
         case POST_POKEMON:
             return {
@@ -46,7 +46,6 @@ export default function rootReducer (state = initialState, action) {
         case RESET:
             return {
                 ...state,
-                reset: false,
                 pokemon: []
             }
         case RESET_DETAIL:
