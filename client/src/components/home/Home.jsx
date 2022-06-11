@@ -11,11 +11,6 @@ export default function Home () {
 
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(getTypes());
-    //     dispatch(getPokemons());
-    // },[dispatch])
-
     // let allPokemons;
     // let pokemon;
     // useEffect(() => {
@@ -25,19 +20,27 @@ export default function Home () {
 
     const allPokemons = useSelector((state) => state.pokemons);
     const pokemon = useSelector((state) => state.pokemon);
+    const pokemonsByType = useSelector((state) => state.pokemonsByType);
+    const pokemonsApiDB = useSelector((state) => state.pokemonsApiDB);
     // const page = useSelector((state) => state.page);
 
     const[currentPage, setCurrentPage] = useState(1);
 
-
+    // PAGINADO
     let poke;
+    let pages;
     if(pokemon && typeof pokemon[0] == 'object'){
         poke = pokemon
+    } else if(pokemonsByType && pokemonsByType.length > 0) {
+        poke = pokemonsByType?.slice((currentPage * 12) - 12, currentPage * 12);
+        pages = Math.ceil(pokemonsByType?.length / 12);
+    } else if(pokemonsApiDB && pokemonsApiDB.length > 0){
+        poke = pokemonsApiDB?.slice((currentPage * 12) - 12, currentPage * 12);
+        pages = Math.ceil(pokemonsApiDB?.length / 12);
     } else {
-        poke = allPokemons;
         poke = allPokemons?.slice((currentPage * 12) - 12, currentPage * 12);
+        pages = Math.ceil(allPokemons?.length / 12);
     }
-    const pages = Math.ceil(allPokemons?.length / 12);
     const nextPage = () => {
         if(currentPage < pages ) {
             setCurrentPage(currentPage + 1)
@@ -56,6 +59,8 @@ export default function Home () {
         setCurrentPage(i)
     }
 
+
+
     useEffect(() => {
         if(allPokemons && allPokemons.length < 1) {
             dispatch(getTypes());
@@ -73,6 +78,54 @@ export default function Home () {
                 <img src={Gengar} alt="img" className="img"/>
             </div>
         )
+    } else if(pokemonsByType && pokemonsByType.length > 0){
+        return(
+            <div className="Home">
+                <NavBar/>
+                <div>
+                    <button onClick={lastPage}>back</button>
+                    {arrayPaginado.map((i) => 
+                        <button key={i} onClick={() => thisPage(i)}>{i}</button>
+                    )}
+                    <button onClick={nextPage}>next</button>
+                </div>
+                <div className="poke">
+                    {poke && poke?.map((pokemon) => 
+                        <PokemonCard
+                            key={pokemon.id}
+                            id={pokemon.id}
+                            name={pokemon.name}
+                            types={pokemon.types}
+                            img={pokemon.img}
+                        />
+                    )}
+                </div>
+            </div>
+        )
+    } else if(pokemonsApiDB && pokemonsApiDB.length > 0) {
+        return(
+            <div className="Home">
+                <NavBar/>
+                <div>
+                    <button onClick={lastPage}>back</button>
+                    {arrayPaginado.map((i) => 
+                        <button key={i} onClick={() => thisPage(i)}>{i}</button>
+                    )}
+                    <button onClick={nextPage}>next</button>
+                </div>
+                <div className="poke">
+                    {poke && poke?.map((pokemon) => 
+                        <PokemonCard
+                            key={pokemon.id}
+                            id={pokemon.id}
+                            name={pokemon.name}
+                            types={pokemon.types}
+                            img={pokemon.img}
+                        />
+                    )}
+                </div>
+            </div>
+        )
     } else {
         return(
             <div className="Home">
@@ -80,7 +133,7 @@ export default function Home () {
                 <div>
                     <button onClick={lastPage}>back</button>
                     {arrayPaginado.map((i) => 
-                        <button key={i} onClick={e => thisPage(i)}>{i}</button>
+                        <button key={i} onClick={() => thisPage(i)}>{i}</button>
                     )}
                     <button onClick={nextPage}>next</button>
                 </div>

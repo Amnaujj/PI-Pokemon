@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { getPokemonDetail, resetDetail } from '../../redux/actions';
+import { getPokemonDetail, reset, resetDetail } from '../../redux/actions';
 
 
 
@@ -16,6 +16,7 @@ export default function PokemonDetail () {
     useEffect(() => {
         dispatch(getPokemonDetail(id))
         dispatch(resetDetail())
+        dispatch(reset())
     }, [dispatch, id])
 
     if(!pokemonDetail || !pokemonDetail.name){

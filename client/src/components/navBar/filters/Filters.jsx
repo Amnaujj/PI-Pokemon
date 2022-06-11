@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { reset, setFilterAtk, setFilterName } from '../../../redux/actions';
+import { getApiDB, getPokemonsByType, reset, setFilterAtk, setFilterName } from '../../../redux/actions';
 import './Filters.css';
 
 export default function Filters() {
@@ -48,7 +48,7 @@ export default function Filters() {
         atkChange.value = 'atk';
         var pokeChange = document.getElementById("3");
         pokeChange.value = 'poke';
-        dispatch(reset());
+        dispatch(getPokemonsByType(pokemons, e.target.value));
     }
 
     function selectApiDb (e) {
@@ -58,7 +58,7 @@ export default function Filters() {
         atkChange.value = 'atk';
         var typeChange = document.getElementById("2");
         typeChange.value = 'type';
-        dispatch(reset());
+        dispatch(getApiDB(pokemons, e.target.value));
     }
 
     return(
@@ -75,7 +75,9 @@ export default function Filters() {
             </select>
             <select id='2' defaultValue="type" onChange={e => sortByType(e)}>
                 <option value="type" disabled>sort by type</option>
-                <option value="type1">type</option>
+                {types.map(t => 
+                    <option key={t.id} value={t.name}>{t.name}</option>
+                )}
             </select>
             <select id='3' defaultValue="poke" onChange={e => selectApiDb(e)}>
                 <option value="poke" disabled>select</option>

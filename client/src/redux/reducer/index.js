@@ -1,4 +1,4 @@
-import { GET_TYPES, GET_POKEMONS, GET_POKEMON_BY_NAME, GET_POKEMON_DETAIL, POST_POKEMON, RESET, RESET_DETAIL, SET_FILTER_NAME, SET_FILTER_ATK } from '../actions';
+import { GET_TYPES, GET_POKEMONS, GET_POKEMON_BY_NAME, GET_POKEMON_DETAIL, POST_POKEMON, RESET, RESET_DETAIL, SET_FILTER_NAME, SET_FILTER_ATK, GET_POKEMONS_BY_TYPE, GET_API_DB } from '../actions';
 
 const initialState = {
     pokemons: [],
@@ -85,6 +85,20 @@ export default function rootReducer (state = initialState, action) {
                 pokemonsByType: [],
                 pokemonsApiDB: [],
                 pokemons: action.payload
+            }
+        case GET_POKEMONS_BY_TYPE:
+            return {
+                ...state,
+                pokemon: [],
+                pokemonsApiDB: [],
+                pokemonsByType: action.payload,
+            }
+        case GET_API_DB:
+            return {
+                ...state,
+                pokemon: [],
+                pokemonsByType: [],
+                pokemonsApiDB: action.payload,
             }
         default:
             return {

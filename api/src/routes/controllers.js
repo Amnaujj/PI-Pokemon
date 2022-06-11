@@ -42,7 +42,8 @@ const getPokemons = async (req, res) => {
                     id: id,
                     name: name,
                     types: tipos,
-                    img: sprites.other.dream_world.front_default,
+                    img: sprites.other['official-artwork'].front_default,
+                    // img: sprites.other.dream_world.front_default,
                     hp: hp[0].base_stat,
                     atk: atk[0].base_stat,
                     def: def[0].base_stat,
@@ -53,7 +54,7 @@ const getPokemons = async (req, res) => {
                 res.send(pokemon)
             }
         } else {
-            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=15') // ?offset=0&limit=40
+            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=151') // ?offset=0&limit=40 //1st: 151 //2nd: 251
             const {results} = pokemons.data;
             let arrayPokemons = []
             for(i = 0; i < results.length; i++) {
@@ -65,7 +66,8 @@ const getPokemons = async (req, res) => {
                     id: id,
                     name: name,
                     types: tipos,
-                    img: sprites.other.dream_world.front_default,
+                    img: sprites.other['official-artwork'].front_default,
+                    // img: sprites.other.dream_world.front_default,
                     atk: atk[0].base_stat
                 })
             }
@@ -117,7 +119,8 @@ const getPokeDetail = async (req, res) => {
                 id: id,
                 name: name,
                 types: tipos,
-                img: sprites.other.dream_world.front_default,
+                img: sprites.other['official-artwork'].front_default,
+                // img: sprites.other.dream_world.front_default,
                 hp: hp[0].base_stat,
                 atk: atk[0].base_stat,
                 def: def[0].base_stat,

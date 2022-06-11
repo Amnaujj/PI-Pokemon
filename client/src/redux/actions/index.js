@@ -9,6 +9,8 @@ export const RESET = 'RESET';
 export const RESET_DETAIL = 'RESET_DETAIL';
 export const SET_FILTER_NAME = 'SET_FILTER_NAME';
 export const SET_FILTER_ATK = 'SET_FILTER_ATK';
+export const GET_POKEMONS_BY_TYPE = 'GET_POKEMONS_BY_TYPE';
+export const GET_API_DB = 'GET_API_DB';
 
 
 
@@ -138,6 +140,28 @@ export function setFilterAtk (pokemons, filter) {
     }
     return {
         type: 'SET_FILTER_ATK',
+        payload: pokeOrder
+    }
+}
+
+export function getPokemonsByType (pokemons, filter) {
+    let pokemons_types = pokemons.filter(p => p.types.includes(filter))
+    console.log(pokemons_types)
+    return {
+        type: 'GET_POKEMONS_BY_TYPE',
+        payload: pokemons_types
+    }
+}
+
+export function getApiDB (pokemons, filter) {
+    let pokeOrder;
+    if(filter === 'pokemons-creados'){
+        pokeOrder = pokemons.filter(p => isNaN(p.id))
+    } else if (filter === 'pokemons-existentes') {
+        pokeOrder = pokemons.filter(p => !isNaN(p.id))
+    }
+    return {
+        type: 'GET_API_DB',
         payload: pokeOrder
     }
 }
