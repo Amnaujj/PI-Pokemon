@@ -58,13 +58,15 @@ const getPokemons = async (req, res) => {
             let arrayPokemons = []
             for(i = 0; i < results.length; i++) {
                 const pokeData = await axios.get(results[i].url);
-                const {name, id, types, sprites} = await pokeData.data;
+                const {name, id, types, sprites, stats} = await pokeData.data;
+                const atk = stats.filter(s => s.stat.name === 'attack');
                 const tipos = types.map(t =>  t.type.name)
                 arrayPokemons.push({
                     id: id,
                     name: name,
                     types: tipos,
-                    img: sprites.other.dream_world.front_default
+                    img: sprites.other.dream_world.front_default,
+                    atk: atk[0].base_stat
                 })
             }
             const pokemonsdb = await Pokemon.findAll({include: Type});

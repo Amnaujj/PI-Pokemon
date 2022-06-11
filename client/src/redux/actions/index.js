@@ -7,7 +7,8 @@ export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
 export const POST_POKEMON = 'POST_POKEMON';
 export const RESET = 'RESET';
 export const RESET_DETAIL = 'RESET_DETAIL';
-
+export const SET_FILTER_NAME = 'SET_FILTER_NAME';
+export const SET_FILTER_ATK = 'SET_FILTER_ATK';
 
 
 
@@ -96,5 +97,47 @@ export function reset () {
 export function resetDetail () {
     return {
         type: 'RESET_DETAIL'
+    }
+}
+
+export function setFilterName (pokemons, filter) {
+    let pokeOrder;
+    if (filter === 'a-z') {
+        pokeOrder = pokemons.sort(function(a, b) {
+            if( a.name < b.name ) return -1;
+            if( a.name > b.name ) return 1;
+            return 0;
+        })
+    } else if (filter === 'z-a') {
+        pokeOrder = pokemons.sort(function(a, b) {
+            if( a.name > b.name ) return -1;
+            if( a.name < b.name ) return 1;
+            return 0;
+        })
+    }
+    return {
+        type: 'SET_FILTER_NAME',
+        payload: pokeOrder
+    }
+}
+
+export function setFilterAtk (pokemons, filter) {
+    let pokeOrder;
+    if (filter === 'atk-') {
+        pokeOrder = pokemons.sort(function(a, b) {
+            if(a.atk < b.atk) return -1;
+            if(a.atk > b.atk) return 1;
+            return 0;
+        })
+    } else if (filter === 'atk+') {
+        pokeOrder = pokemons.sort(function(a, b) {
+            if(a.atk > b.atk) return -1;
+            if(a.atk < b.atk) return 1;
+            return 0;
+        })
+    }
+    return {
+        type: 'SET_FILTER_ATK',
+        payload: pokeOrder
     }
 }

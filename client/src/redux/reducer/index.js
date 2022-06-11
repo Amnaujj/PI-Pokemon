@@ -1,10 +1,14 @@
-import { GET_TYPES, GET_POKEMONS, GET_POKEMON_BY_NAME, GET_POKEMON_DETAIL, POST_POKEMON, RESET, RESET_DETAIL } from '../actions';
+import { GET_TYPES, GET_POKEMONS, GET_POKEMON_BY_NAME, GET_POKEMON_DETAIL, POST_POKEMON, RESET, RESET_DETAIL, SET_FILTER_NAME, SET_FILTER_ATK } from '../actions';
 
 const initialState = {
     pokemons: [],
+    // pokemons2: [],
+    pokemonsByType: [],
+    pokemonsApiDB: [],
     types: [],
     pokemon: [],
     pokemonDetail: {},
+    // page: 1
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -23,7 +27,8 @@ export default function rootReducer (state = initialState, action) {
                 return {
                     ...state,
                     pokemons: action.payload,
-                    pokemon: []
+                    // pokemons2: action.payload,
+                    pokemon: [],
                 };
             }
         case GET_POKEMON_BY_NAME:
@@ -43,14 +48,43 @@ export default function rootReducer (state = initialState, action) {
                 pokemons: [...state.pokemons, action.payload]
             }
         case RESET:
+            let pokeOrder;
+            pokeOrder = state.pokemons.sort(function(a, b) {
+                if(isNaN(a.id) && isNaN(b.id)) return 0;
+                if(isNaN(a.id)) return 1;
+                if(isNaN(b.id)) return -1;
+                if( a.id < b.id ) return -1;
+                if( a.id > b.id ) return 1;
+                return 0;
+            })
             return {
                 ...state,
-                pokemon: []
+                pokemon: [],
+                pokemons: pokeOrder,
+                pokemonsByType: [],
+                pokemonsApiDB: [],
+                // page: 1
             }
         case RESET_DETAIL:
             return {
                 ...state,
                 pokemonDetail: {}
+            }
+        case SET_FILTER_NAME:
+            return {
+                ...state,
+                pokemon: [],
+                pokemonsByType: [],
+                pokemonsApiDB: [],
+                pokemons: action.payload,
+            }
+        case SET_FILTER_ATK:
+            return {
+                ...state,
+                pokemon: [],
+                pokemonsByType: [],
+                pokemonsApiDB: [],
+                pokemons: action.payload
             }
         default:
             return {

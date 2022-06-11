@@ -11,15 +11,24 @@ export default function Home () {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getTypes());
-        dispatch(getPokemons());
-    },[dispatch])
+    // useEffect(() => {
+    //     dispatch(getTypes());
+    //     dispatch(getPokemons());
+    // },[dispatch])
+
+    // let allPokemons;
+    // let pokemon;
+    // useEffect(() => {
+    //     allPokemons = useSelector((state) => state.pokemons);
+    //     pokemon = useSelector((state) => state.pokemon);
+    // },[])
 
     const allPokemons = useSelector((state) => state.pokemons);
     const pokemon = useSelector((state) => state.pokemon);
+    // const page = useSelector((state) => state.page);
 
     const[currentPage, setCurrentPage] = useState(1);
+
 
     let poke;
     if(pokemon && typeof pokemon[0] == 'object'){
@@ -46,6 +55,13 @@ export default function Home () {
     const thisPage = (i) => {
         setCurrentPage(i)
     }
+
+    useEffect(() => {
+        if(allPokemons && allPokemons.length < 1) {
+            dispatch(getTypes());
+            dispatch(getPokemons());
+        }
+    },[dispatch, allPokemons])
 
     if(!poke || poke.length < 1){
         return(
