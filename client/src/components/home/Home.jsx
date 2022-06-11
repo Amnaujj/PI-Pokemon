@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './Home.css';
 import Gengar from '../../img/Gengar.gif'
 
-import { getPokemons, getTypes } from "../../redux/actions";
+import { getPokemons, getTypes, pageEdit } from "../../redux/actions";
 import NavBar from "../navBar/NavBar";
 import PokemonCard from "../pokemonCard/PokemonCard";
 
@@ -11,44 +11,38 @@ export default function Home () {
 
     const dispatch = useDispatch();
 
-    // let allPokemons;
-    // let pokemon;
-    // useEffect(() => {
-    //     allPokemons = useSelector((state) => state.pokemons);
-    //     pokemon = useSelector((state) => state.pokemon);
-    // },[])
+
 
     const allPokemons = useSelector((state) => state.pokemons);
     const pokemon = useSelector((state) => state.pokemon);
     const pokemonsByType = useSelector((state) => state.pokemonsByType);
     const pokemonsApiDB = useSelector((state) => state.pokemonsApiDB);
-    // const page = useSelector((state) => state.page);
+    const page = useSelector((state) => state.page);
 
-    const[currentPage, setCurrentPage] = useState(1);
-
+    
     // PAGINADO
     let poke;
     let pages;
     if(pokemon && typeof pokemon[0] == 'object'){
         poke = pokemon
     } else if(pokemonsByType && pokemonsByType.length > 0) {
-        poke = pokemonsByType?.slice((currentPage * 12) - 12, currentPage * 12);
+        poke = pokemonsByType?.slice((page * 12) - 12, page * 12);
         pages = Math.ceil(pokemonsByType?.length / 12);
     } else if(pokemonsApiDB && pokemonsApiDB.length > 0){
-        poke = pokemonsApiDB?.slice((currentPage * 12) - 12, currentPage * 12);
+        poke = pokemonsApiDB?.slice((page * 12) - 12, page * 12);
         pages = Math.ceil(pokemonsApiDB?.length / 12);
     } else {
-        poke = allPokemons?.slice((currentPage * 12) - 12, currentPage * 12);
+        poke = allPokemons?.slice((page * 12) - 12, page * 12);
         pages = Math.ceil(allPokemons?.length / 12);
     }
     const nextPage = () => {
-        if(currentPage < pages ) {
-            setCurrentPage(currentPage + 1)
+        if(page < pages ) {
+            dispatch(pageEdit(page + 1))
         }
     }
     const lastPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1)
+        if (page > 1) {
+            dispatch(pageEdit(page - 1))
         }
     }
     let arrayPaginado = []
@@ -56,7 +50,7 @@ export default function Home () {
         arrayPaginado.push(i+1)
     }
     const thisPage = (i) => {
-        setCurrentPage(i)
+        dispatch(pageEdit(i))
     }
 
 

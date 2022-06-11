@@ -10,7 +10,8 @@ export const RESET_DETAIL = 'RESET_DETAIL';
 export const SET_FILTER_NAME = 'SET_FILTER_NAME';
 export const SET_FILTER_ATK = 'SET_FILTER_ATK';
 export const GET_POKEMONS_BY_TYPE = 'GET_POKEMONS_BY_TYPE';
-export const GET_API_DB = 'GET_API_DB';
+export const GET_POKEMON_API_DB = 'GET_POKEMON_API_DB';
+export const PAGE_EDIT = 'PAGE_EDIT';
 
 
 
@@ -161,7 +162,14 @@ export function getApiDB (pokemons, filter) {
         pokeOrder = pokemons.filter(p => !isNaN(p.id))
     }
     return {
-        type: 'GET_API_DB',
+        type: 'GET_POKEMON_API_DB',
         payload: pokeOrder
+    }
+}
+
+export function pageEdit (page) {
+    return {
+        type: 'PAGE_EDIT',
+        payload: page
     }
 }

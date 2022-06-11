@@ -48,6 +48,7 @@ export default function Filters() {
         atkChange.value = 'atk';
         var pokeChange = document.getElementById("3");
         pokeChange.value = 'poke';
+        dispatch(reset())
         dispatch(getPokemonsByType(pokemons, e.target.value));
     }
 
@@ -58,6 +59,7 @@ export default function Filters() {
         atkChange.value = 'atk';
         var typeChange = document.getElementById("2");
         typeChange.value = 'type';
+        dispatch(reset())
         dispatch(getApiDB(pokemons, e.target.value));
     }
 

@@ -1,4 +1,16 @@
-import { GET_TYPES, GET_POKEMONS, GET_POKEMON_BY_NAME, GET_POKEMON_DETAIL, POST_POKEMON, RESET, RESET_DETAIL, SET_FILTER_NAME, SET_FILTER_ATK, GET_POKEMONS_BY_TYPE, GET_API_DB } from '../actions';
+import {
+    GET_TYPES,
+    GET_POKEMONS,
+    GET_POKEMON_BY_NAME,
+    GET_POKEMON_DETAIL,
+    POST_POKEMON, RESET,
+    RESET_DETAIL,
+    SET_FILTER_NAME,
+    SET_FILTER_ATK,
+    GET_POKEMONS_BY_TYPE,
+    GET_POKEMON_API_DB,
+    PAGE_EDIT
+} from '../actions';
 
 const initialState = {
     pokemons: [],
@@ -8,7 +20,7 @@ const initialState = {
     types: [],
     pokemon: [],
     pokemonDetail: {},
-    // page: 1
+    page: 1
 }
 
 export default function rootReducer (state = initialState, action) {
@@ -63,7 +75,7 @@ export default function rootReducer (state = initialState, action) {
                 pokemons: pokeOrder,
                 pokemonsByType: [],
                 pokemonsApiDB: [],
-                // page: 1
+                page: 1
             }
         case RESET_DETAIL:
             return {
@@ -77,6 +89,7 @@ export default function rootReducer (state = initialState, action) {
                 pokemonsByType: [],
                 pokemonsApiDB: [],
                 pokemons: action.payload,
+                page: 1
             }
         case SET_FILTER_ATK:
             return {
@@ -84,7 +97,8 @@ export default function rootReducer (state = initialState, action) {
                 pokemon: [],
                 pokemonsByType: [],
                 pokemonsApiDB: [],
-                pokemons: action.payload
+                pokemons: action.payload,
+                page: 1
             }
         case GET_POKEMONS_BY_TYPE:
             return {
@@ -92,13 +106,20 @@ export default function rootReducer (state = initialState, action) {
                 pokemon: [],
                 pokemonsApiDB: [],
                 pokemonsByType: action.payload,
+                page: 1
             }
-        case GET_API_DB:
+        case GET_POKEMON_API_DB:
             return {
                 ...state,
                 pokemon: [],
                 pokemonsByType: [],
                 pokemonsApiDB: action.payload,
+                page: 1
+            }
+        case PAGE_EDIT:
+            return {
+                ...state,
+                page: action.payload
             }
         default:
             return {
