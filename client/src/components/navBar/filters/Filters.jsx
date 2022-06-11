@@ -28,6 +28,7 @@ export default function Filters() {
         typeChange.value = 'type';
         var pokeChange = document.getElementById("3");
         pokeChange.value = 'poke';
+        dispatch(reset())
         dispatch(setFilterName(pokemons, e.target.value))
     }
 
@@ -38,6 +39,7 @@ export default function Filters() {
         typeChange.value = 'type';
         var pokeChange = document.getElementById("3");
         pokeChange.value = 'poke';
+        dispatch(reset())
         dispatch(setFilterAtk(pokemons, e.target.value));
     }
 

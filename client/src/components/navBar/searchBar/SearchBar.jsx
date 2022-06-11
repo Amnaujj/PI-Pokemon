@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getPokemonByName } from '../../../redux/actions';
+import { getPokemonByName, reset } from '../../../redux/actions';
 import './SearchBar.css';
 
 export default function SearchBar () {
@@ -14,6 +14,7 @@ export default function SearchBar () {
     }
     function handleSubmit (e) {
         e.preventDefault();
+        dispatch(reset())
         dispatch(getPokemonByName(state.toLowerCase()));
         var holderChange = document.getElementById("i1");
         holderChange.value = '';

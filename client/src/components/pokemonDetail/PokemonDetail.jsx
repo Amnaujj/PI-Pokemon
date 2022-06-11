@@ -16,7 +16,6 @@ export default function PokemonDetail () {
     useEffect(() => {
         dispatch(getPokemonDetail(id))
         dispatch(resetDetail())
-        dispatch(reset())
     }, [dispatch, id])
 
     if(!pokemonDetail || !pokemonDetail.name){
