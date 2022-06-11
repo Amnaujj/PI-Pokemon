@@ -77,11 +77,11 @@ export default function Home () {
             <div className="Home">
                 <NavBar/>
                 <div>
-                    <button onClick={lastPage}>back</button>
+                    <button onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
                         <button key={i} onClick={() => thisPage(i)}>{i}</button>
                     )}
-                    <button onClick={nextPage}>next</button>
+                    <button onClick={nextPage}>{">"}</button>
                 </div>
                 <div className="poke">
                     {poke && poke?.map((pokemon) => 
@@ -101,11 +101,11 @@ export default function Home () {
             <div className="Home">
                 <NavBar/>
                 <div>
-                    <button onClick={lastPage}>back</button>
+                    <button onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
                         <button key={i} onClick={() => thisPage(i)}>{i}</button>
                     )}
-                    <button onClick={nextPage}>next</button>
+                    <button onClick={nextPage}>{">"}</button>
                 </div>
                 <div className="poke">
                     {poke && poke?.map((pokemon) => 
@@ -125,11 +125,11 @@ export default function Home () {
             <div className="Home">
                 <NavBar/>
                 <div>
-                    <button onClick={lastPage}>back</button>
+                    <button onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
                         <button key={i} onClick={() => thisPage(i)}>{i}</button>
                     )}
-                    <button onClick={nextPage}>next</button>
+                    <button onClick={nextPage}>{">"}</button>
                 </div>
                 <div className="poke">
                     {poke && poke?.map((pokemon) => 

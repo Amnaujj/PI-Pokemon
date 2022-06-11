@@ -9,9 +9,19 @@ export default function SearchBar () {
 
     const dispatch = useDispatch();
 
+    function handleChange (e) {
+        setState(e.target.value)
+    }
+    function handleSubmit (e) {
+        e.preventDefault();
+        dispatch(getPokemonByName(state.toLowerCase()));
+        var holderChange = document.getElementById("i1");
+        holderChange.value = '';
+    }
+    
     return (
-        <form onSubmit={(e) => {e.preventDefault(); dispatch(getPokemonByName(state.toLowerCase()))}}>
-            <input type="text" placeholder='Search...' onChange={(e) => setState(e.target.value)} className='inp'/>
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <input id="i1" type="text" placeholder='Search...' onChange={(e) => handleChange(e)} className='inp'/>
             <input type="submit" value='Search' className="bt"/>
         </form>
     )
