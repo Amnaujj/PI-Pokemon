@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { getPokemonDetail, reset, resetDetail } from '../../redux/actions';
-
+import { getPokemonDetail, resetDetail } from '../../redux/actions';
 
 
 export default function PokemonDetail () {

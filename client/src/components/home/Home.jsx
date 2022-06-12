@@ -65,7 +65,7 @@ export default function Home () {
     if(!poke || poke.length < 1){
         return(
             <div className="Home">
-                <NavBar/>
+                {/* <NavBar/> */}
                 <div>
                     <h1>Cargando ...</h1>
                 </div>
