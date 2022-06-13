@@ -55,7 +55,6 @@ export default function rootReducer (state = initialState, action) {
                 pokemon:[]
             }
         case POST_POKEMON:
-            console.log(action.payload)
             return {
                 ...state,
                 pokemon: [],

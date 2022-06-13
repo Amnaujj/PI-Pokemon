@@ -131,6 +131,12 @@ export default function CreatePokemon () {
             })
         }
     }
+    function handleTypeDelete(e) {
+        setState({
+            ...state,
+            types: state.types.filter((t) => t !== e),
+        });
+    };
     // IMG
     function handleImgChange (e) {
         setState({
@@ -146,8 +152,6 @@ export default function CreatePokemon () {
     function handleSubmit (e) {
         e.preventDefault();
         const pokeName = allPokemons.filter(p => p.name === state.name.toLocaleLowerCase());
-        console.log('hola1')
-        console.log(state)
         if(!pokeName){
             return alert('Ya existe un pokemon con este nombre');
         } else {
@@ -231,7 +235,14 @@ export default function CreatePokemon () {
                                 <option value={t.id} key={t.id}>{t.name}</option>
                             )}
                         </select>
-                        {}
+                        <div>
+                            {state.types.map((t) => 
+                                <p key={t}>
+                                    {allTypes.find(ty => ty.id === t).name}
+                                    <button onClick={() => handleTypeDelete(t)}>x</button>
+                                </p>
+                            )}
+                        </div>
                     </div>
                     <div>
                         <label>Image</label>

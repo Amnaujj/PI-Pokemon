@@ -81,8 +81,6 @@ export function postPokemon ({name, hp, atk, def, spd, height, weight, img, type
                 img:img,
                 types:types
             });
-            console.log('hola2')
-            console.log(response.data)
             dispatch({
                 type: 'POST_POKEMON',
                 payload: response.data
