@@ -18,77 +18,86 @@ export default function CreatePokemon () {
     });
     const [errors, setErrors] = useState({});
 
-    function formValidation (input) {
-        let errors = {};
-        if(!input.hp) errors.hp = 'Every pokemon must have heal points'
-        if(!input.atk) errors.atk = 'Every pokemon must have atack'
-        if(!input.def) errors.def = 'Every pokemon must have defense'
-        if(!input.spd) errors.spd = 'Every pokemon must have speed'
-        if(!input.height) errors.height = 'Every pokemon must have a height'
-        if(!input.weight) errors.weight = 'Every pokemon must have a weight'
-        return errors
-    }
 
     function handleChange (e) {
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        })
-        setErrors(formValidation({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
+        console.log(e.target.value)
     }
-
+    // NAME
     function handleNameChange (e) {
         setState({
             ...state,
             [e.target.name]: e.target.value
         })
-        setErrors(nameValidation({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
+        // setErrors(nameValidation({
+        //     ...state,
+        //     [e.target.name]: e.target.value
+        // }))
+        setErrors({
+            ...errors,
+            [e.target.name]: nameValidation(e.target.value)
+        })
+        console.log(errors)
     }
+    // HP
     function handleHpChange (e) {
         setState({
             ...state,
             [e.target.name]: e.target.value
         })
-        setErrors(hpValidation({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
+        // setErrors(hpValidation({
+        //     ...state,
+        //     [e.target.name]: e.target.value
+        // }))
+        setErrors({
+            ...errors,
+            [e.target.name]: hpValidation(e.target.value)
+        })
+        console.log(errors)
     }
+    // ATK
     function handleAtkChange (e) {
         setState({
             ...state,
             [e.target.name]: e.target.value
         })
-        setErrors(atkValidation({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
+        // setErrors(atkValidation({
+        //     ...state,
+        //     [e.target.name]: e.target.value
+        // }))
+        setErrors({
+            ...errors,
+            [e.target.name]: atkValidation(e.target.value)
+        })
     }
+    // DEF
     function handleDefChange (e) {
         setState({
             ...state,
             [e.target.name]: e.target.value
         })
-        setErrors(defValidation({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
+        // setErrors(defValidation({
+        //     ...state,
+        //     [e.target.name]: e.target.value
+        // }))
+        setErrors({
+            ...errors,
+            [e.target.name]: defValidation(e.target.value)
+        })
     }
+    // SPD
     function handleSpdChange (e) {
         setState({
             ...state,
             [e.target.name]: e.target.value
         })
-        setErrors(spdValidation({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
+        // setErrors(spdValidation({
+        //     ...state,
+        //     [e.target.name]: e.target.value
+        // }))
+        setErrors({
+            ...errors,
+            [e.target.name]: spdValidation(e.target.value)
+        })
     }
 
     function handleSubmit (e) {
@@ -145,7 +154,17 @@ export default function CreatePokemon () {
                         <input type="text" name='img' onChange={e => handleChange(e)}/>
                         { errors.img ? <span> { errors.img } </span> : null }
                     </div>
-                    <input type="submit"/>
+                    <input type="submit" name='submit' disabled = {
+                        errors.name === '' &&
+                        errors.hp === '' &&
+                        errors.atk === '' &&
+                        errors.def === '' &&
+                        errors.spd === '' &&
+                        errors.height === '' &&
+                        errors.weight === '' &&
+                        errors.img === '' &&
+                        errors.type === '' ? false : true
+                    }/>
                 </form>
             </div>
         </div>
