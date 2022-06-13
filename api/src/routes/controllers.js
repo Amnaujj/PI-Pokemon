@@ -54,7 +54,7 @@ const getPokemons = async (req, res) => {
                 res.send(pokemon)
             }
         } else {
-            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=151') // ?offset=0&limit=40 //1st: 151 //2nd: 251
+            const pokemons = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=15') // ?offset=0&limit=40 //1st: 151 //2nd: 251
             const {results} = pokemons.data;
             let arrayPokemons = []
             for(i = 0; i < results.length; i++) {
