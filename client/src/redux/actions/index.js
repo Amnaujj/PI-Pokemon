@@ -67,7 +67,7 @@ export function getPokemonDetail (id) {
     }
 }
 
-export function postPokemon (name, hp, atk, def, spd, height, weight, img, type) {
+export function postPokemon ({name, hp, atk, def, spd, height, weight, img, types}) {
     return async function (dispatch) {
         try {
             const response = await axios.post('http://localhost:3001/pokemons', {
@@ -79,8 +79,10 @@ export function postPokemon (name, hp, atk, def, spd, height, weight, img, type)
                 height:height,
                 weight:weight,
                 img:img,
-                type:type
+                types:types
             });
+            console.log('hola2')
+            console.log(response.data)
             dispatch({
                 type: 'POST_POKEMON',
                 payload: response.data

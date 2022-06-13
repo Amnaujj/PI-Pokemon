@@ -136,7 +136,7 @@ const getPokeDetail = async (req, res) => {
 }
 
 const postPokemons = async (req, res) => {
-    const { name, hp, atk, def, spd, height, weight, img, type } = req.body;
+    const { name, hp, atk, def, spd, height, weight, img, types } = req.body;
     try {
         let findPokemon = await Pokemon.findOne({
             where: {
@@ -148,10 +148,31 @@ const postPokemons = async (req, res) => {
         } else {
             let infoPokemon = { name, hp, atk, def, spd, height, weight, img };
             let newPokemon = await Pokemon.create(infoPokemon);
-            for (let i = 0; i < type.length; i++) {
-                await newPokemon.addTypes(type[i]);
+            for (let i = 0; i < types.length; i++) {
+                await newPokemon.addTypes(types[i]);
             }
-            res.send(await newPokemon)
+            const pokeDatadb = await Pokemon.findAll({
+                where:{
+                    name: {
+                        [Op.substring]:name.toLowerCase()
+                    }
+                },
+                include: Type,
+            })
+            let tipoArray = pokeDatadb[0].dataValues.Types.map(t => t.name);
+            const pokemondb = {
+                id: pokeDatadb[0].dataValues.id,
+                name: pokeDatadb[0].dataValues.name,
+                hp: pokeDatadb[0].dataValues.hp,
+                atk: pokeDatadb[0].dataValues.atk,
+                def: pokeDatadb[0].dataValues.def,
+                spd: pokeDatadb[0].dataValues.spd,
+                height: pokeDatadb[0].dataValues.height,
+                weight: pokeDatadb[0].dataValues.weight,
+                img: pokeDatadb[0].dataValues.img,
+                types: tipoArray
+            };
+            res.send(pokemondb)
         }
     } catch (error) {
         res.send(error)

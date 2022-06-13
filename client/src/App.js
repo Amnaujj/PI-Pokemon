@@ -1,5 +1,5 @@
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import LandingPage from './components/landingPage/LandingPage.jsx';
 import Home from './components/home/Home.jsx';
@@ -9,11 +9,13 @@ import CreatePokemon from './components/createPokemon/CreatePokemon.jsx';
 
 function App() {
 	return (
-		<div className="App">		
-		<Route exact path='/' component={LandingPage}/>
-		<Route exact path='/home' component={Home}/>
-		<Route exact path='/pokemonDetail/:id' component={PokemonDetail}/>
-		<Route exact path='/createPokemon' component={CreatePokemon}/>
+		<div className="App">
+			<Routes>
+				<Route exact path='/' element={<LandingPage/>}/>
+				<Route exact path='/home' element={<Home/>}/>
+				<Route exact path='/pokemonDetail/:id' element={<PokemonDetail/>}/>
+				<Route exact path='/createPokemon' element={<CreatePokemon/>}/>
+			</Routes>
 		</div>
 	);
 }

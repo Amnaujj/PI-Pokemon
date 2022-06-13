@@ -27,7 +27,7 @@ export default function PokemonDetail () {
         return(
             <div>
                 <Link to='/home/'>
-                    <button>Home</button>
+                    <button>{"< Home"}</button>
                 </Link>
                 <div>
                     <h1>{pokemonDetail?.name}</h1>
@@ -38,6 +38,7 @@ export default function PokemonDetail () {
                         <h2>spd: {pokemonDetail?.spd}</h2>
                         <h2>height: {pokemonDetail?.height}</h2>
                         <h2>weight: {pokemonDetail?.weight}</h2>
+                        <h2>types: {pokemonDetail?.types[0]}</h2>
                         <h2>pokedex: {pokemonDetail?.id}</h2>
                     </div>
                 </div>

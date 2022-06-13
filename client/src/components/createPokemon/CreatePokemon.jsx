@@ -1,9 +1,21 @@
-import { Link } from 'react-router-dom';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { nameValidation, hpValidation, atkValidation, defValidation, spdValidation, heightValidation, weightValidation, typeValidation, imgValidation } from './validations.js';
+import { getTypes, postPokemon } from '../../redux/actions';
 import './CreatePokemon.css';
-import { nameValidation, hpValidation, atkValidation, defValidation, spdValidation } from './validations.js';
 
 export default function CreatePokemon () {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const allTypes = useSelector((state) => state.types);
+    const allPokemons = useSelector((state) => state.pokemons);
+
+    useEffect(() => {
+        dispatch(getTypes())
+    },[dispatch])
 
     const [state, setState] = useState({
         name: '',
@@ -14,29 +26,20 @@ export default function CreatePokemon () {
         height: '',
         weight: '',
         img: '',
-        type: []
+        types: []
     });
     const [errors, setErrors] = useState({});
 
-
-    function handleChange (e) {
-        console.log(e.target.value)
-    }
     // NAME
     function handleNameChange (e) {
         setState({
             ...state,
             [e.target.name]: e.target.value
         })
-        // setErrors(nameValidation({
-        //     ...state,
-        //     [e.target.name]: e.target.value
-        // }))
         setErrors({
             ...errors,
             [e.target.name]: nameValidation(e.target.value)
         })
-        console.log(errors)
     }
     // HP
     function handleHpChange (e) {
@@ -44,15 +47,10 @@ export default function CreatePokemon () {
             ...state,
             [e.target.name]: e.target.value
         })
-        // setErrors(hpValidation({
-        //     ...state,
-        //     [e.target.name]: e.target.value
-        // }))
         setErrors({
             ...errors,
             [e.target.name]: hpValidation(e.target.value)
         })
-        console.log(errors)
     }
     // ATK
     function handleAtkChange (e) {
@@ -60,10 +58,6 @@ export default function CreatePokemon () {
             ...state,
             [e.target.name]: e.target.value
         })
-        // setErrors(atkValidation({
-        //     ...state,
-        //     [e.target.name]: e.target.value
-        // }))
         setErrors({
             ...errors,
             [e.target.name]: atkValidation(e.target.value)
@@ -75,10 +69,6 @@ export default function CreatePokemon () {
             ...state,
             [e.target.name]: e.target.value
         })
-        // setErrors(defValidation({
-        //     ...state,
-        //     [e.target.name]: e.target.value
-        // }))
         setErrors({
             ...errors,
             [e.target.name]: defValidation(e.target.value)
@@ -90,26 +80,110 @@ export default function CreatePokemon () {
             ...state,
             [e.target.name]: e.target.value
         })
-        // setErrors(spdValidation({
-        //     ...state,
-        //     [e.target.name]: e.target.value
-        // }))
         setErrors({
             ...errors,
             [e.target.name]: spdValidation(e.target.value)
         })
     }
+    // HEIGHT
+    function handleHChange (e) {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+        setErrors({
+            ...errors,
+            [e.target.name]: heightValidation(e.target.value)
+        })
+    }
+    // WEIGHT
+    function handleWChange (e) {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+        setErrors({
+            ...errors,
+            [e.target.name]: weightValidation(e.target.value)
+        })
+    }
+    // TYPES
+    function handleTypeChange (e) {
+        let chosenTypes = state.types.find(t => t === e.target.value)
+        if(chosenTypes){
+            setErrors({
+                ...errors,
+                [e.target.name]: typeValidation('repeted')
+            })
+        } else if (state.types.length > 1){
+            setErrors({
+                ...errors,
+                [e.target.name]: typeValidation('max2')
+            })
+        } else {
+            setState({
+                ...state,
+                [e.target.name]: [...state.types, e.target.value]
+            })
+            setErrors({
+                ...errors,
+                [e.target.name]: typeValidation(e.target.value)
+            })
+        }
+    }
+    // IMG
+    function handleImgChange (e) {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+        setErrors({
+            ...errors,
+            [e.target.name]: imgValidation(e.target.value)
+        })
+    }
 
     function handleSubmit (e) {
         e.preventDefault();
+        const pokeName = allPokemons.filter(p => p.name === state.name.toLocaleLowerCase());
+        console.log('hola1')
         console.log(state)
-        
+        if(!pokeName){
+            return alert('Ya existe un pokemon con este nombre');
+        } else {
+            const newPokemon = {
+                name: state.name,
+                hp: state.hp,
+                atk: state.atk,
+                def: state.def,
+                spd: state.spd,
+                height: state.height,
+                weight: state.weight,
+                img: state.img,
+                types: state.types
+            }
+            dispatch(postPokemon(newPokemon));
+        }
+        setState({
+            name: '',
+            hp: '',
+            atk: '',
+            def: '',
+            spd: '',
+            height: '',
+            weight: '',
+            img: '',
+            types: []
+        });
+        return(
+            alert('Pokemon succesfully created'), navigate('/home')
+        )
     }
-    //  hp, atk, def, spd, height, weight, img, type
+
     return(
         <div>
             <Link to='/home'>
-                <button>Home</button>
+                <button>{"< Home"}</button>
             </Link>
             <h1>Crear Pokemon</h1>
             <div>
@@ -141,17 +215,27 @@ export default function CreatePokemon () {
                     </div>
                     <div>
                         <label>Height</label>
-                        <input type="text" name='height' onChange={e => handleChange(e)}/>
+                        <input type="text" name='height' onChange={e => handleHChange(e)}/>
                         { errors.height ? <span> { errors.height } </span> : null }
                     </div>
                     <div>
                         <label>Weight</label>
-                        <input type="text" name='weight' onChange={e => handleChange(e)}/>
+                        <input type="text" name='weight' onChange={e => handleWChange(e)}/>
                         { errors.weight ? <span> { errors.weight } </span> : null }
                     </div>
                     <div>
+                        <label>Types</label>
+                        <select name="types" defaultValue="types" onChange={e => handleTypeChange(e)}>
+                            <option value="types" disabled>select types</option>
+                            {allTypes?.map((t) => 
+                                <option value={t.id} key={t.id}>{t.name}</option>
+                            )}
+                        </select>
+                        {}
+                    </div>
+                    <div>
                         <label>Image</label>
-                        <input type="text" name='img' onChange={e => handleChange(e)}/>
+                        <input type="text" name='img' onChange={e => handleImgChange(e)}/>
                         { errors.img ? <span> { errors.img } </span> : null }
                     </div>
                     <input type="submit" name='submit' disabled = {
@@ -163,7 +247,7 @@ export default function CreatePokemon () {
                         errors.height === '' &&
                         errors.weight === '' &&
                         errors.img === '' &&
-                        errors.type === '' ? false : true
+                        errors.types === '' ? false : true
                     }/>
                 </form>
             </div>
