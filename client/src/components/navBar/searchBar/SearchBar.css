@@ -2,7 +2,8 @@
     color: #ffffff;
     background-color: #af0808;
     margin-left: 20px;
-    height: 35px;
+    height: 4vh;
+    width: 7vh;
     /* border-color: #af0808; */
     border-radius: 10px;
 }
@@ -11,6 +12,6 @@
     background-color: #ffffff;
 }
 .inp{
-    height: 30px;
+    height: 3.5vh;
     border-radius: 10px;
 }

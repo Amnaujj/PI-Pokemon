@@ -66,29 +66,29 @@ export default function Filters() {
     }
 
     return(
-        <div>
-            <select id='0' defaultValue="name" onChange={e => sortByName(e)}>
-                <option value="name" disabled>sort by name</option>
-                <option value="a-z">A - Z</option>
-                <option value="z-a">Z - A</option>
+        <div id='filtersContainer'>
+            <select className='filterSelect' id='0' defaultValue="name" onChange={e => sortByName(e)}>
+                <option value="name" disabled>Order By...</option>
+                <option className='filterOptions' value="a-z">A - Z</option>
+                <option className='filterOptions' value="z-a">Z - A</option>
             </select>
-            <select id='1' defaultValue="atk" onChange={e => sortByAtk(e)}>
-                <option value="atk" disabled>sort by atk</option>
-                <option value="atk+">atk+</option>
-                <option value="atk-">atk-</option>
+            <select className='filterSelect' id='1' defaultValue="atk" onChange={e => sortByAtk(e)}>
+                <option value="atk" disabled>Order By...</option>
+                <option className='filterOptions' value="atk+">atk+</option>
+                <option className='filterOptions' value="atk-">atk-</option>
             </select>
-            <select id='2' defaultValue="type" onChange={e => sortByType(e)}>
-                <option value="type" disabled>sort by type</option>
+            <select className='filterSelect' id='2' defaultValue="type" onChange={e => sortByType(e)}>
+                <option value="type" disabled>Type...</option>
                 {types.map(t => 
-                    <option key={t.id} value={t.name}>{t.name}</option>
+                    <option className='filterOptions' key={t.id} value={t.name}>{t.name}</option>
                 )}
             </select>
-            <select id='3' defaultValue="poke" onChange={e => selectApiDb(e)}>
-                <option value="poke" disabled>select</option>
-                <option value="pokemons-creados">created</option>
-                <option value="pokemons-existentes">pokeApi</option>
+            <select className='filterSelect' id='3' defaultValue="poke" onChange={e => selectApiDb(e)}>
+                <option value="poke" disabled>Select...</option>
+                <option className='filterOptions' value="pokemons-creados">created</option>
+                <option className='filterOptions' value="pokemons-existentes">pokeApi</option>
             </select>
-            <button onClick={(e) => handleReset(e)} className="btnReset">RESET</button>
+            <button onClick={(e) => handleReset(e)} className="filterBtnReset">RESET</button>
         </div>
     )
 }

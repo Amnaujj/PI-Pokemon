@@ -16,7 +16,7 @@ export default function NavBar () {
                 <img src={imagen} alt="img" id="navImg"/>
             </div>
             <Link to='/createPokemon'>
-                <button className="btnCreate">Create Pokemon</button>
+                <button className="navBtnCreate">Create Pokemon</button>
             </Link>
             <Filters/>
             <div className='sb'>

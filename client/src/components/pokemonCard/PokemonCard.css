@@ -25,8 +25,16 @@
     display: flex;
     margin: 2vh 0 1vh 0;
 }
-.imgPokeCard{
+#imgContainerPokemonCard{
     height: 26vh;
+    width: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgPokeCard{
+    max-height: 26vh;
+    max-width: 15vw;
 }
 .typesPokeCard{
     display: flex;

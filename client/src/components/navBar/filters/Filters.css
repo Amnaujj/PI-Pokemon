@@ -1,0 +1,32 @@
+#filtersContainer{
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.filterSelect{
+    margin: 0 2vh 0 2vh;
+    background-color: rgba(22, 22, 22, 0);
+    color: white;
+    border: 1px solid #af0808;
+    border-radius: 9px;
+    height: 4vh;
+    width: 13vh;
+    font-size: 1.7vh;
+}
+.filterBtnReset{
+    margin: 0 2vh 0 2vh;
+    background-color: #af0808;
+    color: white;
+    border-radius: 9px;
+    height: 4vh;
+    width: 10vh;
+}
+.filterBtnReset:hover{
+    background-color: white;
+    color: #af0808;
+}
+.filterOptions{
+    color: black;
+}

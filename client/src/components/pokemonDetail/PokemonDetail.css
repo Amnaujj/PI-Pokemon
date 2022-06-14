@@ -28,12 +28,16 @@
 }
 #imgContainerPokeDetail{
     position: absolute;
-    right: 5vw;
-    height: 70vh;
-    width: 40vw;
+    right: 10vw;
+    max-height: 70vh;
+    max-width: 40vw;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#imgPokeDetail{
+    max-height: 70vh;
+    max-width: 40vw;
 }
 .infoPokeDetail{
     background-color: rgba(255, 255, 255, 0.349);
@@ -88,7 +92,11 @@
 .h4PokeDetail{
     font-family: 'Courier New', Courier, monospace;
     font-size: 3vh;
-    margin: 2vh 5vh 4vh 5vh;
+    width: 22vh;
+    margin: 2vh 2vh 4vh 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #pokedexPokeDetail{
     font-size: 3vh;

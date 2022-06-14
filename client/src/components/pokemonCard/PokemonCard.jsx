@@ -10,7 +10,9 @@ export default function PokemonCard (props) {
         <Link to={`/pokemonDetail/${props.id}`} style={{ textDecoration: "inherit" }}>
             <div className="cardPokeCard">
                 <h1 className="namePokeCard">{props.name}</h1>
-                <img src={props.img} alt="img" className="imgPokeCard"/>
+                <div id="imgContainerPokemonCard">
+                    <img src={props.img} alt="img" className="imgPokeCard"/>
+                </div>
                 <div className="typesPokeCard">
                     {props.types.map(type => 
                         <h4 key={i++} id={type} className='h4PokeCard'>{type}</h4>

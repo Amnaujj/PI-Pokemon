@@ -58,10 +58,10 @@ export default function PokemonDetail () {
                         <h4 className='h4PokeDetail'>height: {pokemonDetail?.height}</h4>
                         <h4 className='h4PokeDetail'>weight: {pokemonDetail?.weight}</h4>
                     </div>
-                    <h4 id='pokedexPokeDetail'>pokedex: {pokemonDetail?.id}</h4>
+                    <h4 id='pokedexPokeDetail'>pokedex: {isNaN(pokemonDetail.id) ? 'created pokemon': pokemonDetail.id}</h4>
                 </div>
                 <div id='imgContainerPokeDetail'>
-                    <img src={pokemonDetail?.img} alt="img"/>
+                    <img src={pokemonDetail?.img} alt="img" id='imgPokeDetail'/>
                 </div>
             </div>
         )
