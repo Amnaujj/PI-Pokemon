@@ -185,50 +185,53 @@ export default function CreatePokemon () {
     }
 
     return(
-        <div>
+        <div id='createPokemonContainer'>
             <Link to='/home'>
-                <button>{"< Home"}</button>
+                <button id='createPokemonhomeBtn'>{"< Home"}</button>
             </Link>
-            <h1>Crear Pokemon</h1>
-            <div>
-                <form onSubmit= {(e) => handleSubmit(e)}>
-                    <div>
-                        <label>Name</label>
-                        <input type="text" name='name' onChange={e => handleNameChange(e)}/>
+            <div id='createPokemonformContainer'>
+                <h1 id='createPokemonFormTitle'>Create your Pokemon!</h1>
+                <div id='createPokemonLabels'>
+                    <h2 className='createPokemonLabelH2'>Choose a Name</h2>
+                    <h2 className='createPokemonLabelH2'>Health Points</h2>
+                    <h2 className='createPokemonLabelH2'>Atack</h2>
+                    <h2 className='createPokemonLabelH2'>Defense</h2>
+                    <h2 className='createPokemonLabelH2'>Speed</h2>
+                    <h2 className='createPokemonLabelH2'>Height</h2>
+                    <h2 className='createPokemonLabelH2'>Weight</h2>
+                    <h2 className='createPokemonLabelH2'>Types</h2>
+                    <h2 className='createPokemonLabelH2'>Image</h2>
+                </div>
+                <form id='createPokemonForm' onSubmit= {(e) => handleSubmit(e)}>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='name' onChange={e => handleNameChange(e)}/>
                         { errors.name ? <span> { errors.name } </span> : null }
                     </div>
-                    <div>
-                        <label>Health Points</label>
-                        <input type="text" name='hp' onChange={e => handleHpChange(e)}/>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='hp' onChange={e => handleHpChange(e)}/>
                         { errors.hp ? <span> { errors.hp } </span> : null }
                     </div>
-                    <div>
-                        <label>Atack</label>
-                        <input type="text" name='atk' onChange={e => handleAtkChange(e)}/>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='atk' onChange={e => handleAtkChange(e)}/>
                         { errors.atk ? <span> { errors.atk } </span> : null }
                     </div>
-                    <div>
-                        <label>Defense</label>
-                        <input type="text" name='def' onChange={e => handleDefChange(e)}/>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='def' onChange={e => handleDefChange(e)}/>
                         { errors.def ? <span> { errors.def } </span> : null }
                     </div>
-                    <div>
-                        <label>Speed</label>
-                        <input type="text" name='spd' onChange={e => handleSpdChange(e)}/>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='spd' onChange={e => handleSpdChange(e)}/>
                         { errors.spd ? <span> { errors.spd } </span> : null }
                     </div>
-                    <div>
-                        <label>Height</label>
-                        <input type="text" name='height' onChange={e => handleHChange(e)}/>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='height' onChange={e => handleHChange(e)}/>
                         { errors.height ? <span> { errors.height } </span> : null }
                     </div>
-                    <div>
-                        <label>Weight</label>
-                        <input type="text" name='weight' onChange={e => handleWChange(e)}/>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='weight' onChange={e => handleWChange(e)}/>
                         { errors.weight ? <span> { errors.weight } </span> : null }
                     </div>
-                    <div>
-                        <label>Types</label>
+                    <div className='createPokemonInputContainer'>
                         <select name="types" defaultValue="types" onChange={e => handleTypeChange(e)}>
                             <option value="types" disabled>select types</option>
                             {allTypes?.map((t) => 
@@ -244,9 +247,8 @@ export default function CreatePokemon () {
                             )}
                         </div>
                     </div>
-                    <div>
-                        <label>Image</label>
-                        <input type="text" name='img' onChange={e => handleImgChange(e)}/>
+                    <div className='createPokemonInputContainer'>
+                        <input className='createPokemonInput' type="text" name='img' onChange={e => handleImgChange(e)}/>
                         { errors.img ? <span> { errors.img } </span> : null }
                     </div>
                     <input type="submit" name='submit' disabled = {

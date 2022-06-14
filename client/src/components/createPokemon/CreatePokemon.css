@@ -1,0 +1,75 @@
+#createPokemonContainer{
+    background-image: url(../../img/vamo-a-calmarno.jpg);    
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#createPokemonhomeBtn{
+    position: absolute;
+    top: 7vh;
+    left: 6vw;
+    height: 5vh;
+    width: 10vh;
+    font-size: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.5vh;
+    background-color: rgba(255, 255, 255, 0.651);
+}
+#createPokemonhomeBtn:hover{
+    background-color: rgba(15, 71, 156, 0.486);
+    color: white;
+}
+#createPokemonformContainer{
+    background-color: rgba(255, 255, 255, 0.541);
+    height: 80vh;
+    width: 40vw;
+    border-radius: 4vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#createPokemonFormTitle{
+    font-size: 5vh;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(235, 120, 26)
+}
+#createPokemonLabels{
+    position: absolute;
+    top: 25vh;
+    left: 38vw;
+    margin: 0;
+    color: rgba(61, 61, 61, 0.753);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.createPokemonLabelH2{
+    margin: 2vh 1vh 2vh 1vh;
+    height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#createPokemonForm{
+    position: absolute;
+    top: 25vh;
+    left: 53vw;
+    margin: 0;
+}
+.createPokemonInputContainer{
+    margin: 2vh 1vh 2vh 1vh;
+    height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.createPokemonInput{
+    border-radius: 2vh;
+    border: 0;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
