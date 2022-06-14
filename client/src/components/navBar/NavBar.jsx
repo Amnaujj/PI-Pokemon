@@ -2,8 +2,6 @@ import React from "react";
 import './NavBar.css';
 import imagen from '../../img/Pokemon-logo.svg'
 import SearchBar from './searchBar/SearchBar.jsx';
-// import { useDispatch } from "react-redux";
-// import { reset } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import Filters from "./filters/Filters";
 

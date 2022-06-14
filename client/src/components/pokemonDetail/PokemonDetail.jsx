@@ -14,19 +14,8 @@ export default function PokemonDetail () {
     const dispatch = useDispatch();
     const pokemonDetail = useSelector((state) => state.pokemonDetail);
 
-    // function typecss (t) {
-    //     let type = document.getElementById(t);
-    //     console.log(t)
-    //     if(type === 'normal') type.id = ''
-    // }
-
-    // for (let i = 0; i < pokemonDetail.types.length; i++) {
-    //     typecss(pokemonDetail.types[i])
-    // }
-    
     useEffect(() => {
         dispatch(getPokemonDetail(id))
-        dispatch(resetDetail())
     }, [dispatch, id])
 
     if(!pokemonDetail || !pokemonDetail.name){
@@ -39,7 +28,7 @@ export default function PokemonDetail () {
         return(
             <div className='pokeDetail'>
                 <Link to='/home/'>
-                    <button className='homePokeDetail'>{"< Home"}</button>
+                    <button className='homePokeDetail' onClick={() => dispatch(resetDetail())}>{"< Home"}</button>
                 </Link>
                 <div className='infoPokeDetail'>
                     <h1 id='namePokeDetail'>{pokemonDetail?.name}</h1>

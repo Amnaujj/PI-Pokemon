@@ -78,7 +78,8 @@ const getPokemons = async (req, res) => {
                     id: pokemonsdb[i].dataValues.id,
                     name: pokemonsdb[i].dataValues.name,
                     types: tipoArray,
-                    img: pokemonsdb[i].dataValues.img
+                    img: pokemonsdb[i].dataValues.img,
+                    atk: pokemonsdb[i].dataValues.atk
                 });
             }
             res.send(arrayPokemons)
