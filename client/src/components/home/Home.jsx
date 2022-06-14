@@ -74,7 +74,7 @@ export default function Home () {
         return(
             <div className="Home">
                 <NavBar/>
-                <div>
+                <div id="paginadoHome">
                     <button onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
                         <button key={i} onClick={() => thisPage(i)}>{i}</button>
@@ -98,7 +98,7 @@ export default function Home () {
         return(
             <div className="Home">
                 <NavBar/>
-                <div>
+                <div id="paginadoHome">
                     <button onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
                         <button key={i} onClick={() => thisPage(i)}>{i}</button>
@@ -122,7 +122,7 @@ export default function Home () {
         return(
             <div className="Home">
                 <NavBar/>
-                <div>
+                <div id="paginadoHome">
                     <button onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
                         <button key={i} onClick={() => thisPage(i)}>{i}</button>

@@ -1,14 +1,11 @@
 .Home{
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     height: fit-content;
+    min-height: 100vh;
     width: 100vw;
-    background: linear-gradient(#380a63, #8f0505)
-    /* background: #e7b717; */
-    /* background: linear-gradient(#bd0707, #380a63); */
-    /* background: linear-gradient(#e7a619, #c01a1a); */
+    background: linear-gradient(#af0808, #380a63)
 }
 .pokeHome{
     display: flex;
@@ -20,8 +17,12 @@
 #homeLoading{
     height: 100vh;
     width: 100vw;
+    justify-content: center;
 }
 #loadingBarGifHome{
     height: 10vh;
     width: 10vh;
+}
+#paginadoHome{
+    margin: 3vh 0 0 0;
 }

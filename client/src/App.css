@@ -1,14 +1,14 @@
-body{
+/* body{
   display: flex;
   flex-direction: column;
   height: fit-content;
   width: 100vw;
   background-color: #ffffff;
-  /* background-image: url("./img/pokeimagen6.jpg");
-  background-repeat: no-repeat; */
+  background-image: url("./img/pokeimagen6.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
-  /* background: linear-gradient(#bd0707, #380a63); */
-}
+  background: linear-gradient(#bd0707, #380a63);
+} */
 
 /* .App {
   text-align: center;

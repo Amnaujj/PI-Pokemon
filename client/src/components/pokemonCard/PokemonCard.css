@@ -1,4 +1,4 @@
-.card{
+.cardPokeCard{
     color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
@@ -8,8 +8,9 @@
     margin: 7vh 4vh 7vh 4vh;
     background-color: rgba(255, 255, 255, 0.062);
     border-radius: 20px;
+    box-shadow: -2vh 2vh 4vh 1vh rgba(37, 37, 37, 0.644);
 }
-.card:hover{
+.cardPokeCard:hover{
     transform: scale(1.1);
     /* animation: load 2s infinite; */
 }
@@ -18,19 +19,25 @@
         transform: scale(1.1);
     }
 } */
-.name{
+.namePokeCard{
     outline: none;
     display: flex;
     margin: 2vh 0 1vh 0;
 }
-.img{
+.imgPokeCard{
     height: 26vh;
 }
-.types{
+.typesPokeCard{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-.h4{
-    margin: 10px;
+.h4PokeCard{
+    margin: 1vh;
+    width: 8vh;
+    height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
 }
