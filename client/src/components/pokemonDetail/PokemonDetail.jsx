@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './PokemonDetail.css';
+import loadingImage from '../../img/PikachuGIF.gif'
 
 import { getPokemonDetail, resetDetail } from '../../redux/actions';
 
@@ -11,6 +13,16 @@ export default function PokemonDetail () {
     const { id } = useParams();
     const dispatch = useDispatch();
     const pokemonDetail = useSelector((state) => state.pokemonDetail);
+
+    // function typecss (t) {
+    //     let type = document.getElementById(t);
+    //     console.log(t)
+    //     if(type === 'normal') type.id = ''
+    // }
+
+    // for (let i = 0; i < pokemonDetail.types.length; i++) {
+    //     typecss(pokemonDetail.types[i])
+    // }
     
     useEffect(() => {
         dispatch(getPokemonDetail(id))
@@ -19,30 +31,38 @@ export default function PokemonDetail () {
 
     if(!pokemonDetail || !pokemonDetail.name){
         return(
-            <div>
-                <h1>Cargando ...</h1>
+            <div className='pokeDetail'>
+                <img src={loadingImage} alt="img" id='loadingGifPokeDetail'/>
             </div>
         )
     } else if (pokemonDetail) {
         return(
-            <div>
+            <div className='pokeDetail'>
                 <Link to='/home/'>
-                    <button>{"< Home"}</button>
+                    <button className='homePokeDetail'>{"< Home"}</button>
                 </Link>
-                <div>
-                    <h1>{pokemonDetail?.name}</h1>
-                    <div>
-                        <h2>hp: {pokemonDetail?.hp}</h2>
-                        <h2>atk: {pokemonDetail?.atk}</h2>
-                        <h2>def: {pokemonDetail?.def}</h2>
-                        <h2>spd: {pokemonDetail?.spd}</h2>
-                        <h2>height: {pokemonDetail?.height}</h2>
-                        <h2>weight: {pokemonDetail?.weight}</h2>
-                        <h2>types: {pokemonDetail?.types[0]}</h2>
-                        <h2>pokedex: {pokemonDetail?.id}</h2>
+                <div className='infoPokeDetail'>
+                    <h1 id='namePokeDetail'>{pokemonDetail?.name}</h1>
+                    <h2 id='typeTitlePokeDetail'>types</h2>
+                    <div className='typesPokeDetail'>
+                        {pokemonDetail.types.map((t) => 
+                            <h4  key={t} id={t} className='typeTagPokeDetail'>{t}</h4>
+                            )}
                     </div>
+                    <h2 id='statsTitlePokeDetail'>statistics</h2>
+                    <div className='statsPokeDetail'>
+                        <h4 className='h4PokeDetail'>hp: {pokemonDetail?.hp}</h4>
+                        <h4 className='h4PokeDetail'>atk: {pokemonDetail?.atk}</h4>
+                        <h4 className='h4PokeDetail'>def: {pokemonDetail?.def}</h4>
+                        <h4 className='h4PokeDetail'>spd: {pokemonDetail?.spd}</h4>
+                        <h4 className='h4PokeDetail'>height: {pokemonDetail?.height}</h4>
+                        <h4 className='h4PokeDetail'>weight: {pokemonDetail?.weight}</h4>
+                    </div>
+                    <h4 id='pokedexPokeDetail'>pokedex: {pokemonDetail?.id}</h4>
                 </div>
-                <img src={pokemonDetail?.img} alt="img" />
+                <div id='imgContainerPokeDetail'>
+                    <img src={pokemonDetail?.img} alt="img"/>
+                </div>
             </div>
         )
     }

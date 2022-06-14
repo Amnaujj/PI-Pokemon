@@ -1,0 +1,155 @@
+.pokeDetail{
+    background: linear-gradient(0.25turn, #380a63, #bd0707);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100vh;
+}
+#loadingGifPokeDetail{
+    height: 20vh;
+    width: 20vw;
+}
+.homePokeDetail{
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    height: 5vh;
+    width: 5vw;
+    font-size: 2vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.349);
+    border-radius: 10px;
+}
+.homePokeDetail:hover{
+    background-color: rgb(33, 113, 189);
+    color: white;
+}
+#imgContainerPokeDetail{
+    position: absolute;
+    right: 5vw;
+    height: 70vh;
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.infoPokeDetail{
+    background-color: rgba(255, 255, 255, 0.349);
+    position: absolute;
+    left: 15vw;
+    width: 30vw;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+}
+#namePokeDetail{
+    font-size: 8vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(41, 39, 39);
+    margin: 5vh 0 3vh 0;
+}
+#typeTitlePokeDetail{
+    font-size: 4vh;
+    margin: 1vh 0 2vh 0;
+    /* color: rgb(41, 39, 39) */
+}
+.typesPokeDetail{
+    width: 18vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.typeTagPokeDetail{
+    margin: 1vh 2vh 2vh 2vh;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2vh;
+    width: 6vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#statsTitlePokeDetail{
+    font-size: 4vh;
+    margin: 3vh 0 2vh 0;
+    /* color: rgb(41, 39, 39) */
+}
+.statsPokeDetail{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.h4PokeDetail{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3vh;
+    margin: 2vh 5vh 4vh 5vh;
+}
+#pokedexPokeDetail{
+    font-size: 3vh;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+#normal{
+    background-color: rgb(85, 78, 78);
+}
+#fighting{
+    background-color: rgb(160, 98, 18);
+}
+#flying{
+    background-color: rgb(96, 157, 206);
+}
+#poison{
+    background-color: rgb(180, 64, 174);
+}
+#ground{
+    background-color: rgb(148, 93, 54);
+}
+#rock{
+    background-color: rgb(148, 93, 54);
+}
+#bug{
+    background-color: rgb(148, 93, 54);
+}
+#ghost{
+    background-color: rgb(148, 93, 54);
+}
+#steel{
+    background-color: rgb(148, 93, 54);
+}
+#fire{
+    background-color: rgb(148, 93, 54);
+}
+#water{
+    background-color: rgb(148, 93, 54);
+}
+#grass{
+    background-color: rgb(63, 172, 53);
+}
+#electric{
+    background-color: rgb(148, 93, 54);
+}
+#psychic{
+    background-color: rgb(148, 93, 54);
+}
+#ice{
+    background-color: rgb(148, 93, 54);
+}
+#dragon{
+    background-color: rgb(148, 93, 54);
+}
+#dark{
+    background-color: rgb(148, 93, 54);
+}
+#fairy{
+    background-color: rgb(148, 93, 54);
+}
+#unknown{
+    background-color: rgb(148, 93, 54);
+}
+#shadow{
+    background-color: rgb(148, 93, 54);
+}

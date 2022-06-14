@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './Home.css';
-import Gengar from '../../img/Gengar.gif'
+import loadingGengar from '../../img/Gengar.gif';
+import loadingBar from '../../img/Loading2GIF.gif';
 
 import { getPokemons, getTypes, pageEdit } from "../../redux/actions";
 import NavBar from "../navBar/NavBar";
@@ -64,12 +65,9 @@ export default function Home () {
 
     if(!poke || poke.length < 1){
         return(
-            <div className="Home">
-                {/* <NavBar/> */}
-                <div>
-                    <h1>Cargando ...</h1>
-                </div>
-                <img src={Gengar} alt="img" className="img"/>
+            <div className="Home" id="homeLoading">
+                <img src={loadingGengar} alt="img" className="imgHome"/>
+                <img src={loadingBar} alt="img" id="loadingBarGifHome"/>
             </div>
         )
     } else if(pokemonsByType && pokemonsByType.length > 0){
@@ -83,7 +81,7 @@ export default function Home () {
                     )}
                     <button onClick={nextPage}>{">"}</button>
                 </div>
-                <div className="poke">
+                <div className="pokeHome">
                     {poke && poke?.map((pokemon) => 
                         <PokemonCard
                             key={pokemon.id}
@@ -107,7 +105,7 @@ export default function Home () {
                     )}
                     <button onClick={nextPage}>{">"}</button>
                 </div>
-                <div className="poke">
+                <div className="pokeHome">
                     {poke && poke?.map((pokemon) => 
                         <PokemonCard
                             key={pokemon.id}
@@ -131,7 +129,7 @@ export default function Home () {
                     )}
                     <button onClick={nextPage}>{">"}</button>
                 </div>
-                <div className="poke">
+                <div className="pokeHome">
                     {poke && poke?.map((pokemon) => 
                         <PokemonCard
                             key={pokemon.id}

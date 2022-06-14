@@ -1,19 +1,24 @@
 .Nav{
-    background: rgb(49, 48, 48);
+    background: rgba(27, 24, 32, 0.575);
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;
-    height: 70px;
+    width: 100vw;
+    height: 9vh;
 }
-.img{
-    height: 55px;
-    width: 150px;
-    margin: 10px;
+#navImgDiv{
+    height: 4vh;
+    width: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#navImg{
+    height: 6vh;
 }
 .sb{
     position: absolute;
-    top: 16px;
-    margin-left: 75%;
+    top: 2.5vh;
+    right: 5vh;
     width: auto
 }
