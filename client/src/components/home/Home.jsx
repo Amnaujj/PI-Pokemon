@@ -75,11 +75,11 @@ export default function Home () {
             <div className="Home">
                 <NavBar/>
                 <div id="paginadoHome">
-                    <button onClick={lastPage}>{"<"}</button>
+                    <button className="btnNextPaginadoHome" onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
-                        <button key={i} onClick={() => thisPage(i)}>{i}</button>
+                        <button className="btnPaginadoHome" key={i} onClick={() => thisPage(i)}>{i}</button>
                     )}
-                    <button onClick={nextPage}>{">"}</button>
+                    <button className="btnNextPaginadoHome" onClick={nextPage}>{">"}</button>
                 </div>
                 <div className="pokeHome">
                     {poke && poke?.map((pokemon) => 
@@ -99,11 +99,11 @@ export default function Home () {
             <div className="Home">
                 <NavBar/>
                 <div id="paginadoHome">
-                    <button onClick={lastPage}>{"<"}</button>
+                    <button className="btnNextPaginadoHome" onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
-                        <button key={i} onClick={() => thisPage(i)}>{i}</button>
+                        <button className="btnPaginadoHome" key={i} onClick={() => thisPage(i)}>{i}</button>
                     )}
-                    <button onClick={nextPage}>{">"}</button>
+                    <button className="btnNextPaginadoHome" onClick={nextPage}>{">"}</button>
                 </div>
                 <div className="pokeHome">
                     {poke && poke?.map((pokemon) => 
@@ -123,11 +123,11 @@ export default function Home () {
             <div className="Home">
                 <NavBar/>
                 <div id="paginadoHome">
-                    <button onClick={lastPage}>{"<"}</button>
+                    <button className="btnNextPaginadoHome" onClick={lastPage}>{"<"}</button>
                     {arrayPaginado.map((i) => 
-                        <button key={i} onClick={() => thisPage(i)}>{i}</button>
+                        <button className="btnPaginadoHome" key={i} onClick={() => thisPage(i)}>{i}</button>
                     )}
-                    <button onClick={nextPage}>{">"}</button>
+                    <button className="btnNextPaginadoHome" onClick={nextPage}>{">"}</button>
                 </div>
                 <div className="pokeHome">
                     {poke && poke?.map((pokemon) => 

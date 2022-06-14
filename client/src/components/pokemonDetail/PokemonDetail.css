@@ -64,14 +64,16 @@
     justify-content: center;
 }
 .typeTagPokeDetail{
-    margin: 1vh 2vh 2vh 2vh;
+    margin: 1vh 2vh 0vh 2vh;
     border-radius: 4px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 2vh;
     width: 6vw;
+    height: 4vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
 }
 #statsTitlePokeDetail{
     font-size: 4vh;
@@ -112,7 +114,7 @@
     background-color: rgb(107, 65, 35);
 }
 #bug{
-    background-color: rgb(36, 112, 40);
+    background-color: rgb(2, 136, 9);
 }
 #ghost{
     background-color: rgb(126, 49, 136);
@@ -130,7 +132,7 @@
     background-color: rgb(63, 172, 53);
 }
 #electric{
-    background-color: rgb(216, 205, 51);
+    background-color: rgb(207, 162, 38);
 }
 #psychic{
     background-color: rgb(158, 46, 158);

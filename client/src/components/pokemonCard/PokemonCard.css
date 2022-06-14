@@ -20,6 +20,7 @@
     }
 } */
 .namePokeCard{
+    font-family: 'Courier New', Courier, monospace;
     outline: none;
     display: flex;
     margin: 2vh 0 1vh 0;
