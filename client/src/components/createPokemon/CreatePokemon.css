@@ -120,5 +120,10 @@
     border-radius: 2vh;
     border: 0;
     background-color: rgba(255, 254, 254, 0.493);
-    box-shadow: -0.3vh 0.3vh 1vh 0.1vh rgba(37, 37, 37, 0.644)
+    box-shadow: -0.3vh 0.3vh 0.1vh 0.1vh rgba(37, 37, 37, 0.644)
+}
+#createPokemonInputCreateBtn:active {
+    box-shadow: -0.2vh 0.2vh 0.1vh 0.05vh rgba(37, 37, 37, 0.644);
+    transform: translateY(-0.2vh);
+    transform: translateX(-0.2vh);
 }
