@@ -12,12 +12,9 @@ export default function Home () {
 
     const dispatch = useDispatch();
 
-
-
     const allPokemons = useSelector((state) => state.pokemons);
     const pokemon = useSelector((state) => state.pokemon);
     const page = useSelector((state) => state.page);
-
     
     // PAGINADO
     let poke;
@@ -45,8 +42,6 @@ export default function Home () {
     const thisPage = (i) => {
         dispatch(pageEdit(i))
     }
-
-
 
     useEffect(() => {
         if(allPokemons && allPokemons.length < 1) {
@@ -87,4 +82,4 @@ export default function Home () {
             </div>
         )
     }
-    }
+}

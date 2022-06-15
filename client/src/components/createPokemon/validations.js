@@ -16,7 +16,7 @@ export function hpValidation (input) {
     let error = '';
     if(!input) error = 'Every pokemon must have health points';
     else if (!/^[0-9]+$/.test(input)) error = 'try with a round number';
-    else if (input > 9000 || input < 10) error = 'try with a number between 10 and 9000';
+    else if (input > 400 || input < 10) error = 'try with a number between 10 and 400';
     return error;
 }
 
@@ -48,7 +48,7 @@ export function heightValidation (input) {
     let error = '';
     if(!input) error = 'every pokemon must have height';
     else if (!/^[0-9]+$/.test(input)) error = 'try with a round number';
-    else if (input > 9000 || input < 1) error = 'try with a number between 1 and 5000';
+    else if (input > 100 || input < 1) error = 'try with a number between 1 and 100';
     return error;
 }
 
@@ -56,7 +56,7 @@ export function weightValidation (input) {
     let error = '';
     if(!input) error = 'every pokemon must have height';
     else if (!/^[0-9]+$/.test(input)) error = 'try with a round number';
-    else if (input > 1500 || input < 1) error = 'try with a number between 1 and 1500';
+    else if (input > 3000 || input < 1) error = 'try with a number between 1 and 3000';
     return error;
 }
 
@@ -71,6 +71,6 @@ export function typeValidation (input) {
 export function imgValidation (input) {
     let error = '';
     if(!input) error = 'every pokemon must have an img';
-    else if (!/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(input)) error = 'must be an url'
+    else if (!/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(input)) error = 'try with an url'
     return error;
 }
