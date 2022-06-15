@@ -16,8 +16,6 @@ export default function Home () {
 
     const allPokemons = useSelector((state) => state.pokemons);
     const pokemon = useSelector((state) => state.pokemon);
-    const pokemonsByType = useSelector((state) => state.pokemonsByType);
-    const pokemonsApiDB = useSelector((state) => state.pokemonsApiDB);
     const page = useSelector((state) => state.page);
 
     
@@ -26,12 +24,6 @@ export default function Home () {
     let pages;
     if(pokemon && typeof pokemon[0] == 'object'){
         poke = pokemon
-    } else if(pokemonsByType && pokemonsByType.length > 0) {
-        poke = pokemonsByType?.slice((page * 12) - 12, page * 12);
-        pages = Math.ceil(pokemonsByType?.length / 12);
-    } else if(pokemonsApiDB && pokemonsApiDB.length > 0){
-        poke = pokemonsApiDB?.slice((page * 12) - 12, page * 12);
-        pages = Math.ceil(pokemonsApiDB?.length / 12);
     } else {
         poke = allPokemons?.slice((page * 12) - 12, page * 12);
         pages = Math.ceil(allPokemons?.length / 12);
@@ -68,54 +60,6 @@ export default function Home () {
             <div className="Home" id="homeLoading">
                 <img src={loadingGengar} alt="img" className="imgHome"/>
                 <img src={loadingBar} alt="img" id="loadingBarGifHome"/>
-            </div>
-        )
-    } else if(pokemonsByType && pokemonsByType.length > 0){
-        return(
-            <div className="Home">
-                <NavBar/>
-                <div id="paginadoHome">
-                    <button className="btnNextPaginadoHome" onClick={lastPage}>{"<"}</button>
-                    {arrayPaginado.map((i) => 
-                        <button className="btnPaginadoHome" key={i} onClick={() => thisPage(i)}>{i}</button>
-                    )}
-                    <button className="btnNextPaginadoHome" onClick={nextPage}>{">"}</button>
-                </div>
-                <div className="pokeHome">
-                    {poke && poke?.map((pokemon) => 
-                        <PokemonCard
-                            key={pokemon.id}
-                            id={pokemon.id}
-                            name={pokemon.name}
-                            types={pokemon.types}
-                            img={pokemon.img}
-                        />
-                    )}
-                </div>
-            </div>
-        )
-    } else if(pokemonsApiDB && pokemonsApiDB.length > 0) {
-        return(
-            <div className="Home">
-                <NavBar/>
-                <div id="paginadoHome">
-                    <button className="btnNextPaginadoHome" onClick={lastPage}>{"<"}</button>
-                    {arrayPaginado.map((i) => 
-                        <button className="btnPaginadoHome" key={i} onClick={() => thisPage(i)}>{i}</button>
-                    )}
-                    <button className="btnNextPaginadoHome" onClick={nextPage}>{">"}</button>
-                </div>
-                <div className="pokeHome">
-                    {poke && poke?.map((pokemon) => 
-                        <PokemonCard
-                            key={pokemon.id}
-                            id={pokemon.id}
-                            name={pokemon.name}
-                            types={pokemon.types}
-                            img={pokemon.img}
-                        />
-                    )}
-                </div>
             </div>
         )
     } else {

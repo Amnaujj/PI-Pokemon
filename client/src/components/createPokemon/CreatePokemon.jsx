@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { nameValidation, hpValidation, atkValidation, defValidation, spdValidation, heightValidation, weightValidation, typeValidation, imgValidation } from './validations.js';
-import { getTypes, postPokemon } from '../../redux/actions';
+import { getTypes, postPokemon, reset } from '../../redux/actions';
 import './CreatePokemon.css';
 
 export default function CreatePokemon () {
@@ -11,10 +11,11 @@ export default function CreatePokemon () {
     const navigate = useNavigate();
 
     const allTypes = useSelector((state) => state.types);
-    const allPokemons = useSelector((state) => state.pokemons);
+    const allPokemons = useSelector((state) => state.pokemons2);
 
     useEffect(() => {
         dispatch(getTypes())
+        dispatch(reset())
     },[dispatch])
 
     const [state, setState] = useState({
@@ -263,6 +264,9 @@ export default function CreatePokemon () {
                         errors.types === '' ? false : true
                     }/>
                 </form>
+                <div>
+
+                </div>
             </div>
         </div>
     )

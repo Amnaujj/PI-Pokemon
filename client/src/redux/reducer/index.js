@@ -14,9 +14,7 @@ import {
 
 const initialState = {
     pokemons: [],
-    // pokemons2: [],
-    pokemonsByType: [],
-    pokemonsApiDB: [],
+    pokemons2: [],
     types: [],
     pokemon: [],
     pokemonDetail: {},
@@ -35,14 +33,13 @@ export default function rootReducer (state = initialState, action) {
                 return {
                     ...state
                 }
-            } else {
-                return {
-                    ...state,
-                    pokemons: action.payload,
-                    // pokemons2: action.payload,
-                    pokemon: [],
-                };
             }
+            return {
+                ...state,
+                pokemons: action.payload,
+                pokemons2: action.payload,
+                pokemon: [],
+            };
         case GET_POKEMON_BY_NAME:
             return {
                 ...state,
@@ -58,27 +55,14 @@ export default function rootReducer (state = initialState, action) {
             return {
                 ...state,
                 pokemon: [],
-                pokemonsByType: [],
-                pokemonsApiDB: [],
                 page: 1,
                 pokemons: [...state.pokemons, action.payload]
             }
         case RESET:
-            let pokeOrder;
-            pokeOrder = state.pokemons.sort(function(a, b) {
-                if(isNaN(a.id) && isNaN(b.id)) return 0;
-                if(isNaN(a.id)) return 1;
-                if(isNaN(b.id)) return -1;
-                if( a.id < b.id ) return -1;
-                if( a.id > b.id ) return 1;
-                return 0;
-            })
             return {
                 ...state,
                 pokemon: [],
-                pokemons: pokeOrder,
-                pokemonsByType: [],
-                pokemonsApiDB: [],
+                pokemons: state.pokemons2,
                 page: 1
             }
         case RESET_DETAIL:
@@ -91,8 +75,6 @@ export default function rootReducer (state = initialState, action) {
             return {
                 ...state,
                 pokemon: [],
-                pokemonsByType: [],
-                pokemonsApiDB: [],
                 pokemons: action.payload,
                 page: 1
             }
@@ -100,26 +82,34 @@ export default function rootReducer (state = initialState, action) {
             return {
                 ...state,
                 pokemon: [],
-                pokemonsByType: [],
-                pokemonsApiDB: [],
                 pokemons: action.payload,
                 page: 1
             }
         case GET_POKEMONS_BY_TYPE:
-            return {
-                ...state,
-                pokemon: [],
-                pokemonsApiDB: [],
-                pokemonsByType: action.payload,
-                page: 1
+            if(action.payload && action.payload.length < 1) {
+                return {
+                    ...state
+                }
+            } else {
+                return {
+                    ...state,
+                    pokemon: [],
+                    pokemons: action.payload,
+                    page: 1
+                }
             }
         case GET_POKEMON_API_DB:
-            return {
-                ...state,
-                pokemon: [],
-                pokemonsByType: [],
-                pokemonsApiDB: action.payload,
-                page: 1
+            if(action.payload && action.payload.length < 1) {
+                return {
+                    ...state
+                }
+            } else {
+                return {
+                    ...state,
+                    pokemon: [],
+                    pokemons: action.payload,
+                    page: 1
+                }
             }
         case PAGE_EDIT:
             return {

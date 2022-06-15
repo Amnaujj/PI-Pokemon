@@ -4,7 +4,7 @@ import './Filters.css';
 
 export default function Filters() {
 
-    const pokemons = useSelector((state) => state.pokemons);
+    const pokemons = useSelector((state) => state.pokemons2);
     const types = useSelector((state) => state.types);
 
     const dispatch = useDispatch();
@@ -28,8 +28,7 @@ export default function Filters() {
         typeChange.value = 'type';
         var pokeChange = document.getElementById("3");
         pokeChange.value = 'poke';
-        dispatch(reset())
-        dispatch(setFilterName(pokemons, e.target.value))
+        dispatch(setFilterName(pokemons.slice(), e.target.value))
     }
 
     function sortByAtk (e) {
@@ -39,8 +38,7 @@ export default function Filters() {
         typeChange.value = 'type';
         var pokeChange = document.getElementById("3");
         pokeChange.value = 'poke';
-        dispatch(reset())
-        dispatch(setFilterAtk(pokemons, e.target.value));
+        dispatch(setFilterAtk(pokemons.slice(), e.target.value));
     }
 
     function sortByType (e) {
@@ -50,8 +48,7 @@ export default function Filters() {
         atkChange.value = 'atk';
         var pokeChange = document.getElementById("3");
         pokeChange.value = 'poke';
-        dispatch(reset())
-        dispatch(getPokemonsByType(pokemons, e.target.value));
+        dispatch(getPokemonsByType(pokemons.slice(), e.target.value));
     }
 
     function selectApiDb (e) {
@@ -61,8 +58,7 @@ export default function Filters() {
         atkChange.value = 'atk';
         var typeChange = document.getElementById("2");
         typeChange.value = 'type';
-        dispatch(reset())
-        dispatch(getApiDB(pokemons, e.target.value));
+        dispatch(getApiDB(pokemons.slice(), e.target.value));
     }
 
     return(
