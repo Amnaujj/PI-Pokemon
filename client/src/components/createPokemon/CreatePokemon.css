@@ -26,7 +26,7 @@
 #createPokemonformContainer{
     background-color: rgba(255, 255, 255, 0.541);
     height: 80vh;
-    width: 40vw;
+    width: 70vw;
     border-radius: 4vh;
     display: flex;
     align-items: center;
@@ -35,12 +35,12 @@
 #createPokemonFormTitle{
     font-size: 5vh;
     font-family: 'Courier New', Courier, monospace;
-    color: rgb(235, 120, 26)
+    color: rgb(30, 96, 194)
 }
 #createPokemonLabels{
     position: absolute;
     top: 25vh;
-    left: 38vw;
+    left: 22vw;
     margin: 0;
     color: rgba(61, 61, 61, 0.753);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -55,7 +55,7 @@
 #createPokemonForm{
     position: absolute;
     top: 25vh;
-    left: 53vw;
+    left: 37vw;
     margin: 0;
 }
 .createPokemonInputContainer{
@@ -72,4 +72,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#createPokemonSelectType{
+    height: 3vh;
+    width: 15vh;
+    border-radius: 1vh;
+}
+#createPokemonFormErrors{
+    position: absolute;
+    top: 25vh;
+    left: 48vw;
+    margin: 0;
+}
+.createPokemonDivError{
+    margin: 2vh 1vh 2vh 1vh;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    color: rgb(173, 7, 7);
+    font-size: 1.9vh;
+}
+.createPokemonSelectedType{
+    color: white;
+    font-size: 1.7vh;
+    height: 3vh;
+    width: 10vh;
+    max-width: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 1vh;
+    margin: 0 1vh 0 0;
+}
+.createPokemonSelectedTypeBtn{
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    font-size: 2vh;
+}
+#createPokemonInputCreateBtn{
+    position: absolute;
+    top: 24vh;
+    left: 30vw;
+    height: 8vh;
+    width: 13vh;
+    font-size: 2.5vh;
+    border-radius: 2vh;
+    border: 0;
+    background-color: rgba(255, 254, 254, 0.493);
+    box-shadow: -0.3vh 0.3vh 1vh 0.1vh rgba(37, 37, 37, 0.644)
 }

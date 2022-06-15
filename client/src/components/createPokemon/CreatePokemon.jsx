@@ -206,53 +206,37 @@ export default function CreatePokemon () {
                 <form id='createPokemonForm' onSubmit= {(e) => handleSubmit(e)}>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='name' onChange={e => handleNameChange(e)}/>
-                        { errors.name ? <span> { errors.name } </span> : null }
                     </div>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='hp' onChange={e => handleHpChange(e)}/>
-                        { errors.hp ? <span> { errors.hp } </span> : null }
                     </div>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='atk' onChange={e => handleAtkChange(e)}/>
-                        { errors.atk ? <span> { errors.atk } </span> : null }
                     </div>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='def' onChange={e => handleDefChange(e)}/>
-                        { errors.def ? <span> { errors.def } </span> : null }
                     </div>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='spd' onChange={e => handleSpdChange(e)}/>
-                        { errors.spd ? <span> { errors.spd } </span> : null }
                     </div>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='height' onChange={e => handleHChange(e)}/>
-                        { errors.height ? <span> { errors.height } </span> : null }
                     </div>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='weight' onChange={e => handleWChange(e)}/>
-                        { errors.weight ? <span> { errors.weight } </span> : null }
                     </div>
                     <div className='createPokemonInputContainer'>
-                        <select name="types" defaultValue="types" onChange={e => handleTypeChange(e)}>
+                        <select id='createPokemonSelectType' name="types" defaultValue="types" onChange={e => handleTypeChange(e)}>
                             <option value="types" disabled>select types</option>
                             {allTypes?.map((t) => 
                                 <option value={t.id} key={t.id}>{t.name}</option>
                             )}
                         </select>
-                        <div>
-                            {state.types.map((t) => 
-                                <p key={t}>
-                                    {allTypes.find(ty => ty.id === t).name}
-                                    <button onClick={() => handleTypeDelete(t)}>x</button>
-                                </p>
-                            )}
-                        </div>
                     </div>
                     <div className='createPokemonInputContainer'>
                         <input className='createPokemonInput' type="text" name='img' onChange={e => handleImgChange(e)}/>
-                        { errors.img ? <span> { errors.img } </span> : null }
                     </div>
-                    <input type="submit" name='submit' disabled = {
+                    <input id='createPokemonInputCreateBtn' type="submit" name='submit' value='Create' disabled = {
                         errors.name === '' &&
                         errors.hp === '' &&
                         errors.atk === '' &&
@@ -264,8 +248,39 @@ export default function CreatePokemon () {
                         errors.types === '' ? false : true
                     }/>
                 </form>
-                <div>
-
+                <div id='createPokemonFormErrors'>
+                    <div className='createPokemonDivError'>
+                        { errors.name ? <span> { errors.name } </span> : null }
+                    </div>
+                    <div className='createPokemonDivError'>
+                        { errors.hp ? <span> { errors.hp } </span> : null }
+                    </div>
+                    <div className='createPokemonDivError'>
+                        { errors.atk ? <span> { errors.atk } </span> : null }
+                    </div>
+                    <div className='createPokemonDivError'>
+                        { errors.def ? <span> { errors.def } </span> : null }
+                    </div>
+                    <div className='createPokemonDivError'>
+                        { errors.spd ? <span> { errors.spd } </span> : null }
+                    </div>
+                    <div className='createPokemonDivError'>
+                        { errors.height ? <span> { errors.height } </span> : null }
+                    </div>
+                    <div className='createPokemonDivError'>
+                        { errors.weight ? <span> { errors.weight } </span> : null }
+                    </div>
+                    <div className='createPokemonDivError'>
+                        {state.types.map((t) => 
+                            <p id={allTypes.find(ty => ty.id === t).name} className='createPokemonSelectedType' key={t}>
+                                {allTypes.find(ty => ty.id === t).name}
+                                <button className='createPokemonSelectedTypeBtn' onClick={() => handleTypeDelete(t)}>x</button>
+                            </p>
+                        )}
+                    </div>
+                    <div className='createPokemonDivError'>
+                        { errors.img ? <span> { errors.img } </span> : null }
+                    </div>
                 </div>
             </div>
         </div>
