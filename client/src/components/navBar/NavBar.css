@@ -27,9 +27,11 @@
     color: white;
 }
 .navBtnCreate:hover{
-    background-color: white;
+    /* background-color: white; */
     /* color: #af0808; */
+    background-color: rgba(22, 22, 22, 0);
     color: rgb(161, 11, 11);
+    border: 0.1vh solid rgb(161, 11, 11);
 }
 .sb{
     position: absolute;

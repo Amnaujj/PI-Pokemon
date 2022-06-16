@@ -10,8 +10,11 @@
 }
 .bt:hover{
     /* color: #af0808; */
+    /* color: rgb(161, 11, 11);
+    background-color: #ffffff; */
+    background-color: rgba(22, 22, 22, 0);
     color: rgb(161, 11, 11);
-    background-color: #ffffff;
+    border: 0.1vh solid rgb(161, 11, 11);
 }
 .inp{
     height: 3.5vh;

@@ -26,9 +26,12 @@
     width: 10vh;
 }
 .filterBtnReset:hover{
-    background-color: white;
-    /* color: #af0808; */
+    /* background-color: white;
+    color: #af0808;
+    color: rgb(161, 11, 11); */
+    background-color: rgba(22, 22, 22, 0);
     color: rgb(161, 11, 11);
+    border: 0.1vh solid rgb(161, 11, 11);
 }
 .filterOptions{
     color: black;
