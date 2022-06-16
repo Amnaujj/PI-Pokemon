@@ -56,7 +56,8 @@ export default function rootReducer (state = initialState, action) {
                 ...state,
                 pokemon: [],
                 page: 1,
-                pokemons: [...state.pokemons, action.payload]
+                pokemons: [...state.pokemons, action.payload],
+                pokemons2: [...state.pokemons2, action.payload]
             }
         case RESET:
             return {

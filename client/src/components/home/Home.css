@@ -11,9 +11,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: fit-content;
-    min-height: 100vh;
-    width: 100vw;
+    background-size: 100% 100%;
     background: linear-gradient(#af0808, #380a63)
 }
 #paginadoHome{
@@ -40,7 +38,6 @@
     margin: 0 1vh 0 1vh;
     height: 5vh;
     width: 5vh;
-    /* border: 1px solid black; */
     border: 0;
     border-radius: 8px;
     background-color: #ffffff36;
