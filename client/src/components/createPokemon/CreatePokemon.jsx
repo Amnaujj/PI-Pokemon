@@ -153,7 +153,7 @@ export default function CreatePokemon () {
     function handleSubmit (e) {
         e.preventDefault();
         const pokeName = allPokemons.filter(p => p.name === state.name.toLocaleLowerCase());
-        if(!pokeName){
+        if(pokeName && pokeName.length > 0){
             return alert('Ya existe un pokemon con este nombre');
         } else {
             const newPokemon = {

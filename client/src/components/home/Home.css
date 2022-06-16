@@ -12,6 +12,7 @@
     align-items: center;
     flex-direction: column;
     background-size: 100% 100%;
+    min-height: 100vh;
     /* background: linear-gradient(#af0808, #380a63) */
     background: linear-gradient( rgb(160, 11, 11), rgb(92, 8, 109), rgb(5, 5, 150));
 }
