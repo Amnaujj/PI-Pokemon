@@ -1,5 +1,5 @@
 .pokeDetail{
-    background: linear-gradient(0.25turn, #380a63, #bd0707);
+    background: linear-gradient(0.25turn, #380a63, rgb(160, 11, 11));
     color: white;
     display: flex;
     justify-content: center;

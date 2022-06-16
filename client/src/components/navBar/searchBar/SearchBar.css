@@ -1,6 +1,7 @@
 .bt{
     color: #ffffff;
-    background-color: #af0808;
+    /* background-color: #af0808; */
+    background-color: rgb(161, 11, 11);
     margin-left: 20px;
     height: 4vh;
     width: 7vh;
@@ -8,7 +9,8 @@
     border-radius: 10px;
 }
 .bt:hover{
-    color: #af0808;
+    /* color: #af0808; */
+    color: rgb(161, 11, 11);
     background-color: #ffffff;
 }
 .inp{

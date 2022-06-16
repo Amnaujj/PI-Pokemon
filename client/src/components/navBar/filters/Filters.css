@@ -9,7 +9,8 @@
     margin: 0 2vh 0 2vh;
     background-color: rgba(22, 22, 22, 0);
     color: white;
-    border: 1px solid #af0808;
+    /* border: 1px solid #af0808; */
+    border: 1px solid rgb(161, 11, 11);
     border-radius: 9px;
     height: 4vh;
     width: 13vh;
@@ -17,7 +18,8 @@
 }
 .filterBtnReset{
     margin: 0 2vh 0 2vh;
-    background-color: #af0808;
+    /* background-color: #af0808; */
+    background-color: rgb(161, 11, 11);
     color: white;
     border-radius: 9px;
     height: 4vh;
@@ -25,7 +27,8 @@
 }
 .filterBtnReset:hover{
     background-color: white;
-    color: #af0808;
+    /* color: #af0808; */
+    color: rgb(161, 11, 11);
 }
 .filterOptions{
     color: black;

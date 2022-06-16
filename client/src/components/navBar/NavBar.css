@@ -22,12 +22,14 @@
     width: 15vh;
     margin: 0 5vh 0 5vh;
     border-radius: 7px;
-    background-color: #af0808;
+    /* background-color: #af0808; */
+    background-color: rgb(161, 11, 11);
     color: white;
 }
 .navBtnCreate:hover{
     background-color: white;
-    color: #af0808;
+    /* color: #af0808; */
+    color: rgb(161, 11, 11);
 }
 .sb{
     position: absolute;

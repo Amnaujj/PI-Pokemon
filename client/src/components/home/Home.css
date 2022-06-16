@@ -12,7 +12,8 @@
     align-items: center;
     flex-direction: column;
     background-size: 100% 100%;
-    background: linear-gradient(#af0808, #380a63)
+    /* background: linear-gradient(#af0808, #380a63) */
+    background: linear-gradient( rgb(160, 11, 11), rgb(92, 8, 109), rgb(5, 5, 150));
 }
 #paginadoHome{
     margin: 3vh 0 0 0;
@@ -27,7 +28,7 @@
     height: 3vh;
     width: 3vh;
     border: 0;
-    border-radius: 8px;
+    border-radius: 1vh;
     background-color: #ffffff36;
 }
 .btnPaginadoHome:hover{
@@ -39,7 +40,7 @@
     height: 5vh;
     width: 5vh;
     border: 0;
-    border-radius: 8px;
+    border-radius: 1vh;
     background-color: #ffffff36;
 }
 .btnNextPaginadoHome:hover{
