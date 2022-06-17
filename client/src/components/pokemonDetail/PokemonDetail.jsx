@@ -31,7 +31,7 @@ export default function PokemonDetail () {
                     <button className='homePokeDetail' onClick={() => dispatch(resetDetail())}>{"< Home"}</button>
                 </Link>
                 <div className='infoPokeDetail'>
-                    <h1 id='namePokeDetail'>{pokemonDetail?.name}</h1>
+                    <h1 id='namePokeDetail'>{`${pokemonDetail?.name.toUpperCase().charAt(0)}${pokemonDetail?.name.substring(1, pokemonDetail?.name.length)}`}</h1>
                     <h2 id='typeTitlePokeDetail'>types</h2>
                     <div className='typesPokeDetail'>
                         {pokemonDetail.types.map((t) => 
