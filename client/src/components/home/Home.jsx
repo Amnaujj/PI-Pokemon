@@ -62,11 +62,15 @@ export default function Home () {
             <div className="Home">
                 <NavBar/>
                 <div id="paginadoHome">
-                    <button className="btnNextPaginadoHome" onClick={lastPage}>{"<"}</button>
-                    {arrayPaginado.map((i) => 
-                        <button className="btnPaginadoHome" key={i} onClick={() => thisPage(i)}>{i}</button>
-                    )}
-                    <button className="btnNextPaginadoHome" onClick={nextPage}>{">"}</button>
+                    { arrayPaginado.length > 1 ?
+                        <div>
+                                <button className="btnNextPaginadoHome" onClick={lastPage}>{"<"}</button>
+                                {arrayPaginado.map((i) => 
+                                    <button className="btnPaginadoHome" key={i} onClick={() => thisPage(i)}>{i}</button>
+                                )}
+                                <button className="btnNextPaginadoHome" onClick={nextPage}>{">"}</button>
+                        </div> : null 
+                    }
                 </div>
                 <div className="pokeHome">
                     {poke && poke?.map((pokemon) => 
