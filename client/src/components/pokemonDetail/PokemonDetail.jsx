@@ -1,18 +1,27 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './PokemonDetail.css';
 import loadingImage from '../../img/PikachuGIF.gif'
 
-import { getPokemonDetail, resetDetail } from '../../redux/actions';
+import { deletePokemon, getPokemonDetail, resetDetail } from '../../redux/actions';
 
 
 export default function PokemonDetail () {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const pokemonDetail = useSelector((state) => state.pokemonDetail);
+
+    function handleClick (e) {
+        e.preventDefault();
+        dispatch(deletePokemon(pokemonDetail.id));
+        return(
+            alert('Pokemon succesfully deleted'), navigate('/home')
+        )
+    }
 
     useEffect(() => {
         dispatch(getPokemonDetail(id))
@@ -49,6 +58,7 @@ export default function PokemonDetail () {
                     </div>
                     <h4 id='pokedexPokeDetail'>pokedex: {isNaN(pokemonDetail.id) ? 'created pokemon': pokemonDetail.id}</h4>
                 </div>
+                {isNaN(pokemonDetail.id) ? <button id='PokeDetailBtnDelete' onClick={(e) => handleClick(e)}>Delete</button> : null}
                 <div id='imgContainerPokeDetail'>
                     <img src={pokemonDetail?.img} alt="img" id='imgPokeDetail'/>
                 </div>

@@ -199,12 +199,24 @@ const getPokeTypes = async (req, res) => {
     }
 }
 
+const deletePokemon = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const pokemon = await Pokemon.findByPk(id , {include: Type});
+        await pokemon.destroy();
+        res.send(id);
+    } catch (error) {
+        res.send(error)
+    }
+}
+
 
 module.exports = {
     getPokemons,
     getPokeDetail,
     postPokemons,
-    getPokeTypes
+    getPokeTypes,
+    deletePokemon
 }
 
 

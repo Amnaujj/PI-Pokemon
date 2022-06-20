@@ -103,6 +103,20 @@
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
+#PokeDetailBtnDelete{
+    position: absolute;
+    top: 94vh;
+    left: 28vw;
+    height: 4vh;
+    width: 6vw;
+    border-radius: 1vh;
+    font-size: 1vw;
+    background-color: rgba(255, 255, 255, 0.363);
+}
+#PokeDetailBtnDelete:hover{
+    background-color: rgb(139, 12, 12);
+    color: white;
+}
 #normal{
     background-color: rgb(85, 78, 78);
 }

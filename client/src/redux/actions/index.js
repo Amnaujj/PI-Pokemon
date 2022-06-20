@@ -5,6 +5,7 @@ export const GET_POKEMONS = 'GET_POKEMONS';
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
 export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
 export const POST_POKEMON = 'POST_POKEMON';
+export const DELETE_POKEMON = 'DELETE_POKEMON';
 export const RESET = 'RESET';
 export const RESET_DETAIL = 'RESET_DETAIL';
 export const SET_FILTER_NAME = 'SET_FILTER_NAME';
@@ -83,6 +84,20 @@ export function postPokemon ({name, hp, atk, def, spd, height, weight, img, type
             });
             dispatch({
                 type: 'POST_POKEMON',
+                payload: response.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function deletePokemon (id) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.delete(`http://localhost:3001/pokemons/${id}`);
+            dispatch({
+                type: 'DELETE_POKEMON',
                 payload: response.data
             })
         } catch (error) {

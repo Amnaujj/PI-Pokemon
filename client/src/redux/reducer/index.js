@@ -3,7 +3,9 @@ import {
     GET_POKEMONS,
     GET_POKEMON_BY_NAME,
     GET_POKEMON_DETAIL,
-    POST_POKEMON, RESET,
+    POST_POKEMON,
+    DELETE_POKEMON,
+    RESET,
     RESET_DETAIL,
     SET_FILTER_NAME,
     SET_FILTER_ATK,
@@ -58,6 +60,13 @@ export default function rootReducer (state = initialState, action) {
                 page: 1,
                 pokemons: [...state.pokemons, action.payload],
                 pokemons2: [...state.pokemons2, action.payload]
+            }
+        case DELETE_POKEMON:
+
+            return {
+                ...state,
+                pokemons: state.pokemons.filter(p => p.id !== action.payload),
+                pokemons2: state.pokemons2.filter(p => p.id !== action.payload)
             }
         case RESET:
             return {
