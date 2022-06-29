@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Home.css';
 import loadingGengar from '../../img/Gengar.gif';
 import loadingBar from '../../img/Loading2GIF.gif';
+import pika from '../../img/pika3.png';
 
 import { getPokemons, getTypes, pageEdit } from "../../redux/actions";
 import NavBar from "../navBar/NavBar";
@@ -21,7 +22,9 @@ export default function Home () {
     let pages;
     if(pokemon && typeof pokemon[0] == 'object'){
         poke = pokemon
-    } else {
+    } else if(typeof pokemon[0] == 'string') {
+        poke = pokemon
+    } else  {
         poke = allPokemons?.slice((page * 12) - 12, page * 12);
         pages = Math.ceil(allPokemons?.length / 12);
     }
@@ -42,7 +45,7 @@ export default function Home () {
     const thisPage = (i) => {
         dispatch(pageEdit(i))
     }
-
+    console.log(poke)
     useEffect(() => {
         if(allPokemons && allPokemons.length < 1) {
             dispatch(getTypes());
@@ -55,6 +58,14 @@ export default function Home () {
             <div className="Home" id="homeLoading">
                 <img src={loadingGengar} alt="img" className="imgHome"/>
                 <img src={loadingBar} alt="img" id="loadingBarGifHome"/>
+            </div>
+        )
+    } else if (typeof pokemon[0] == 'string') {
+        return (
+            <div className="Home">
+                <NavBar/>
+                <h1 id="noRes">No Results ...</h1>
+                <img src={pika} alt="img" id="pika"/>
             </div>
         )
     } else {
@@ -73,7 +84,7 @@ export default function Home () {
                     }
                 </div>
                 <div className="pokeHome">
-                    {poke && poke?.map((pokemon) => 
+                    {poke?.map((pokemon) => 
                         <PokemonCard
                             key={pokemon.id}
                             id={pokemon.id}

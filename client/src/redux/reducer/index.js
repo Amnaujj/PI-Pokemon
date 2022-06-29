@@ -43,9 +43,15 @@ export default function rootReducer (state = initialState, action) {
                 pokemon: [],
             };
         case GET_POKEMON_BY_NAME:
+            if(action.payload && typeof action.payload === 'object') {
+                return {
+                    ...state,
+                    pokemon: [action.payload],
+                }
+            }
             return {
                 ...state,
-                pokemon: [action.payload],
+                pokemon: ['no existe el pokemon']
             }
         case GET_POKEMON_DETAIL:
             return {
@@ -62,7 +68,6 @@ export default function rootReducer (state = initialState, action) {
                 pokemons2: [...state.pokemons2, action.payload]
             }
         case DELETE_POKEMON:
-
             return {
                 ...state,
                 pokemons: state.pokemons.filter(p => p.id !== action.payload),
@@ -98,7 +103,9 @@ export default function rootReducer (state = initialState, action) {
         case GET_POKEMONS_BY_TYPE:
             if(action.payload && action.payload.length < 1) {
                 return {
-                    ...state
+                    ...state,
+                    pokemon: ['no existe el pokemon'],
+                    page: 1
                 }
             } else {
                 return {
@@ -111,7 +118,9 @@ export default function rootReducer (state = initialState, action) {
         case GET_POKEMON_API_DB:
             if(action.payload && action.payload.length < 1) {
                 return {
-                    ...state
+                    ...state,
+                    pokemon: ['no existe el pokemon'],
+                    page: 1
                 }
             } else {
                 return {

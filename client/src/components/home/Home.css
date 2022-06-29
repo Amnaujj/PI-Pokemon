@@ -7,6 +7,16 @@
     height: 10vh;
     width: 10vh;
 }
+#pika{
+    background-color: rgba(255, 255, 255, 0);
+    max-height: 40vh;
+    max-width: 40vh;
+    margin: 10vh 0 0 0;
+}
+#noRes{
+    font-size: 5vh;
+    margin: 15vh 0 0 0;
+}
 .Home{
     display: flex;
     align-items: center;

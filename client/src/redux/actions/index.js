@@ -52,6 +52,12 @@ export function getPokemonByName (name) {
                 payload: pokemon
             })
         })
+        .catch( () => {
+            dispatch({
+                type:'GET_POKEMON_BY_NAME',
+                payload: 'hola'
+            })
+        })
     }
 }
 
