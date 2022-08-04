@@ -3,7 +3,7 @@
 
 ## POKEAPP
 
-Find your favourite pokemon and see all its details
+Find your favourite pokemon and see all its details<br/>
 You can also create your own pokemon and give it the stats and image you want
 
 ### Installation
