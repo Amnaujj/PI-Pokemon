@@ -12,7 +12,7 @@ You can also create your own pokemon and give it the stats and image you want
 ```js
 npm install
 ```
-- Next
+<!-- - Next -->
 ```js
 npm start
 ```
