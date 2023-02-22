@@ -17,9 +17,9 @@ npm install
 npm start
 ```
 
-### Deployed app 
--Front
- https://pokemons-two.vercel.app/home
+### Video
+-PokeApp
+ https://youtu.be/Zu-Eyd0LE2U
 
 ### Technologies used
 ```js
