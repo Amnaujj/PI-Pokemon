@@ -10,9 +10,9 @@ export default function NavBar () {
 
     return(
         <nav className="Nav">
-            <div id="navImgDiv">
+            <Link to='/' id="navImgDiv">
                 <img src={imagen} alt="img" id="navImg"/>
-            </div>
+            </Link>
             <Link to='/createPokemon'>
                 <button className="navBtnCreate">Create Pokemon</button>
             </Link>
